@@ -1,0 +1,75 @@
+---
+logo: images/icon1_nb.png
+lang: es
+filters:
+  - timer
+format: 
+  letterbox-revealjs:
+    theme: custom.scss
+    progress: false
+    menu: true
+    width: 1400
+    height: 720
+    slide-number: true
+    preview-links: auto
+    touch: true
+    chalkboard:
+      theme: whiteboard
+      boardmarker-width: 4
+      buttons: false
+    revealjs-plugins:
+      - pointer
+      
+callout-appearance: simple
+---
+
+## 
+
+::: columns
+::: {.column width="37.5%"}
+![](images/icon1_nb.png){style="margin-left:-50px"}
+:::
+
+::: {.column width="60%"}
+::: {.title data-id="title"}
+Módulo 6: Principios básicos de Diseño de Experimentos
+:::
+
+Mauricio Moreno, PhD
+:::
+:::
+
+![](images/adele-payman-2oYMwuFgnTg-unsplash.jpg){.image-left}
+
+## {}
+
+::: columns
+::: {.column width="60%"}
+
+::: {.title data-id="title"}
+Fin del módulo 6
+:::
+
+::: {.callout-tip}
+## Créditos de fotos
+
+Foto portada por <a href="https://unsplash.com/@adele_payman?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Adele Payman</a> en <a href="https://unsplash.com/photos/green-leafed-plants-during-daytime-2oYMwuFgnTg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  
+
+Foto final por <a href="https://unsplash.com/@willwalker?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Will Walker</a> en <a href="https://unsplash.com/photos/selective-focus-photography-of-brown-plant-during-daytime-9DlpdOHsqzM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  
+
+Resto de fotos: Varias fuentes
+:::
+
+:::
+
+::: {.column width="37.5%"}
+
+![](images/icon1_nb.png){style="margin-left:120px"}
+
+
+:::
+:::
+
+![](images/will-walker-9DlpdOHsqzM-unsplash.jpg){.image-right}
