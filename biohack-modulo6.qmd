@@ -25,50 +25,927 @@ callout-appearance: simple
 
 ## 
 
-::: columns
+:::::: columns
 ::: {.column width="37.5%"}
 ![](images/icon1_nb.png){style="margin-left:-50px"}
 :::
 
-::: {.column width="60%"}
+:::: {.column width="60%"}
 ::: {.title data-id="title"}
 Módulo 6: Principios básicos de Diseño de Experimentos
 :::
 
 Mauricio Moreno, PhD
-:::
-:::
+::::
+::::::
 
 ![](images/adele-payman-2oYMwuFgnTg-unsplash.jpg){.image-left}
 
-## {}
+## Generalidades {.smaller}
+
+::: incremental
+
+-   El pionero en introducir la idea del diseño experimental fue [Charles S. Peirce](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce){target="_blank"} al introducir la randomización en experimentos de laboratorio en los años 1800s.
+
+-   Por otra parte, considerado como uno de los mayores referentes de la estadística moderna, [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher) publicó en los años 1926 y 1935 los libros *The Arrangement of Field Experiments* y *The Design of Experiments*, que nacieron de la necesidad de mejorar la experimentación en la Agricultura.
+
+-   Hasta el día de hoy, los principios y diseños experimentales propuestos por Fisher son ampliamente usados en todas las ciencias.
+
+-   No debemos confundir el diseño experimental con el observacional.
+
+-   Así también, toda la metodología que vimos en el módulo anterior no se aplica exclusivamente a diseños experimentales.
+:::
+
+## Introducción al diseño experimental {.smaller}
+
+::: incremental
+-   El diseño experimental es el proceso de planear un experimento con el cual se busca probar una hipótesis acerca de una variable dependiente (llamada también de respuesta) en función del cambio de otras variables independientes.
+
+-   Tiene dos principios generales:
+
+    -   **Repetición/replicación**: es la aplicación de los tratamientos a un determinado número de unidades experimentales. Mínimo (aunque no recomendable), dos unidades.
+
+    -   **Aleatoriedad/randomización**: la asignación de unidades experimentales a un tratamiento debe realizarse al azar.
+
+-   Entre sus objetivos tiene el modelar la variabilidad de los datos y establecer si existen o no diferencias entre las medias aritméticas de los tratamientos que los generaron.
+
+-   La importancia de modelar adecuadamente la variabilidad radica en que mientras mejor se lo consiga, más confiables serán las inferencias que hagamos a partir nuestro experimento.
+
+:::
+
+## Principales fuentes de variación
+
+:::incremental
+
+-   **Variación dentro de los tratamientos**: dada por la diferencia entre las repeticiones dentro de un tratamiento con respecto a su media aritmética.
+
+-   **Variación entre los tratamientos**: dada por la aplicación del tratamiento.
+
+-   **Error experimental**: dada por factores de poco o completamente ajenos al control del investigador.
+
+-   Cómo veremos más adelante, dependiendo del diseño experimental, otras fuentes de variación serán tomadas en cuenta.
+:::
+
+
+## Tipos de diseño experimental {.smaller}
+
+::: incremental
+-   Tradicionales
+
+    -   Se basan **fundamentalmente** en el principio de la ortogonalidad [(las variables independientes que explican a una variable no deben estar correlacionadas)]{.fragment}
+
+    -   Para cumplir la ortogonalidad, es común a veces requerir de muchas observaciones.
+
+    -   Por tanto, son fáciles de planear, pero pueden resultar no viables en la práctica
+
+-   Óptimos
+
+    -   En lugar de la ortogonalidad, utilizan [criterios de optimización](https://en.wikipedia.org/wiki/Optimal_experimental_design){target="_blank"} para reducir el efecto de correlaciones.
+
+    -   Son mucho más difícil de planear, pero generalmente son más fáciles de implementar.
+:::
+
+# Antes de continuar
+
+## Repeticiones técnicas y biológicas {.nostrech .smaller}
+
+![](images/replicates.png){fig-align="center" width=10%}
+
+. . .
+
+::: columns
+::: {.column width="50%"}
+**Técnicas:** El enfoque es hacer inferencias sobre un inviduo o probando un método, esto por cuanto es natural que las medidas al venir de una misma unidad experimental estén correlacionadas. Se necesitan modelos lineales **mixtos** y modelos lineales generalizados **mixtos** para su análisis.
+:::
+
+::: {.column width="50%"}
+**Biológicas:** para hacer inferencias acerca de una población en general. El principio de independencia se mantiene y por tanto requieren metodología estándar (modelos lineales y modelos lineales generalizados).
+:::
+:::
+
+::: footer
+Imagen tomada de [aquí](https://www.embopress.org/doi/full/10.15252/embj.201592958){target="_blank"}
+:::
+
+## Pseudo repeticiones {.nostrech .smaller}
+
+![](images/pseudorep.jpeg){fig-align="center" width=10%}
+
+. . .
+
+Son comunes en agricultura y ecología. Hay que evitarlas en la medida de lo posible por problemas de randomización. Requieren también modelos **mixtos** para su análisis.
+
+::: footer
+Imagen tomada de [aquí](https://bookdown.org/kmbm92/Applied-Biostats/sampling.html){target="_blank"}
+:::
+
+## Revisitando el tamaño de muestra (análisis de poder) {.smaller}
+
+:::incremental
+
+-   La estimación del tamaño de muestra no es siempre una tarea sencilla.
+
+-   Depende del tipo de variable dependiente y el modelo estadístico a usarse.
+
+-   Además, requiere de información previa que muchas veces no es fácil de estimar:
+
+    -   **Tamaños del efecto** (cuya fórmula cambia dependiendo del modelo estadístico)
+    
+    -   Y otros dependiendo del modelo estadístico tales como: desviación estándar agrupada, tamaño de efecto de Cohen y correlación.
+    
+-   Para tener una idea de estos parámetros, uno puede valerse de estudios piloto o buscar valores en la literatura.
+
+-   Para ilustrar solo un caso, vamos a tomar en cuenta el caso del **ANOVA (de una vía, balanceado)**
+
+:::
+
+## Tamaño de muestra para el ANOVA de una vía {.smaller}
+
+En R tenemos dos opciones para calcularlo con los comandos `power.anova.test` y `pwr.anova.test`: 
+
+::: columns
+::: {.column width="50%"}
+Librería base `{stats}`
+
+```{r echo=T, eval=F}
+power.anova.test(groups = NULL, n = NULL,
+                 between.var = NULL, within.var = NULL,
+                 sig.level = 0.05, power = NULL)
+```
+:::
+
+::: {.column width="50%"}
+Librería `{pwr}`
+```{r echo=T, eval=F}
+pwr.anova.test(k = NULL, n = NULL, 
+               f = NULL, sig.level = 0.05, 
+               power = NULL)
+```
+:::
+:::
+
+. . .
+
+Ambas son básicamente lo mismo. En `{pwr}`, el argumento `f` se refiere al tamaño de efecto. El tamaño de efecto de un ANOVA de una vía balanceado está dado por la fórmula:
+
+$$
+f = \sqrt{\frac{\sigma^2_{\text{entre tratamientos}}}{\sigma^2_{\text{dentro de los tratamientos}}}}
+$$
+
+. . .
+
+Estos valores son las sumas de cuadrados disponibles en la tabla del ANOVA
+
+![](images/anova.png){fig-align="center" width=40%}
+
+## Tamaño de muestra para el ANOVA de una vía {.smaller visibility="uncounted"}
+
+Recordando el ejemplo de ANOVA del [módulo anterior](https://mmorenozam.github.io/biohack-modulo5/biohack-modulo5.html#/anova-de-una-v%C3%ADa){target="_blank"}, supongamos que estamos interesados en llevar a cabo un experimento similar, y basándonos en ese estudio, queremos determinar nuestro tamaño de muestra. La tabla del paper se vería más o menos así:
+
+. . . 
+
+```{r echo=F, eval=T}
+library(Stat2Data)
+library(car)
+library(insight)
+library(flextable)
+library(report)
+data(FruitFlies)
+lm1 <- lm(Longevity ~ Treatment, data = FruitFlies)
+anova1 <- Anova(lm1)
+anova1 |> 
+  report_table() |> 
+  format_table() |>
+  flextable()
+```
+
+. . .
+
+::: columns
+::: {.column width="50%"}
+```{r echo=T, eval=F}
+library(pwr)
+library(ggplot2)
+n <- seq(2, 20, 1)
+curva_poder <- pwr.anova.test(k = 5, n = n,
+                              f = sqrt(11939.28/26313.52), 
+                              sig.level = 0.05)
+curva_poder_df <- data.frame(n, 
+                             poder = curva_poder$power)
+curva_poder_df |>
+  ggplot(aes(x = n, y = poder)) +
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = 0.8, color = "red", linetype = "dashed") +
+  theme_bw() +
+  scale_y_continuous(labels = scales::percent)
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r echo=F, eval=T}
+library(pwr)
+library(ggplot2)
+n <- seq(2, 20, 1)
+curva_poder <- pwr.anova.test(k = 5, n = n,
+                              f = sqrt(11939.28/26313.52), 
+                              sig.level = 0.05)
+curva_poder_df <- data.frame(n, 
+                             poder = curva_poder$power)
+curva_poder_df |>
+  ggplot(aes(x = n, y = poder)) +
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = 0.8, color = "red", linetype = "dashed") +
+  theme_bw() +
+  scale_y_continuous(labels = scales::percent)
+```
+:::
+:::
+
+## Inconvenientes con el tamaño de muestra {.smaller}
+
+::: incremental
+
+-   El ejemplo de tamaño de muestra que vimos corresponde a un caso de "fórmula cerrada".
+
+-   Una fórmula cerrada es el nombre que se le da a una solución analítica.
+
+-   La mayoría de modelos estadísticos clásicos tienen soluciones analíticas.
+
+-   Con modelos más complejos (mixtos y también óptimos), sus tamaños de muestra pueden ser aproximados con fórmulas cerradas de modelos clásicos.
+
+-   Sin embargo para estos últimos (sobre todo en el ámbito académico), es preferible utilizar estimación de muestra por medio de simulaciones.
+
+-   Llevar a cabo simulaciones es complejo e implica un muy buen entendimiento de la matemática detrás de cada modelo.
+
+-   Entonces, ¿qué podemos hacer?
+:::
+
+## Cuando el modelo no es tan complejo: `{simr}`
+
+::: incremental
+
+-   `{simr}` es una librería de R que ofrece funciones para el análisis de poder de modelos líneales generalizados **mixtos** llevando a cabo las simulaciones por nosotros de una manera automatizada.
+
+-   `{simr}` basa su funcionamiento en la librería `{lme4}` y por lo tanto padece de las limitaciones de esta última (por ejemplo: datos expresados en forma de proporciones o porcentajes no son posibles de modelar con `{lme4}`).
+
+-   `{simr}` en si misma también posee varias limitaciones, entre ellas: sintaxis confusa (sobre todo para usuarios principiantes), tender a ser sumamente lento a medida que la complejidad del modelo aumenta, incapacidad de ser paralelizado fácilmente.
+
+:::
+
+## Cuando las fórmulas cerradas y `{simr}` nos han fallado
+
+::: incremental
+
+-   Si el objetivo de nuestra investigación no es llegarla a publicar en un journal de altísimo impacto, y nuestro modelo estadístico es complejo, podemos conformarnos con dos "números mágicos" que seguro has escuchado en algún momento:
+
+-   **3 repeticiones por tratamiento:** Para todo estadístico se necesitan al menos dos observaciones para poder calcularlo. 3 es una sugerencia ampliamente usada como el número mínimo de repeticiones.
+
+-   **30 como tamaño total de la muestra:** Cuando no se tiene manera de estimar los parámetros en un análisis de poder, se suele sugerir empezar la investigación con un número mínimo de 30 observaciones como muestra total.
+
+:::
+
+# Introducción al diseño de experimentos en R
+
+## Una historia sobre bacterias {.smaller}
+
+::: columns
+::: {.column width="50%"}
+
+-   Supongamos que tenemos 4 cepas de bacterias que en pruebas de laboratorio han demostrado tener buenas capacidades de degradar nitratos en agua.
+
+-   Para una posible producción a escala industrial, es necesario el determinar cuál de estas 4 cepas tiene la mejor eficiencia.
+
+-   Es necesario entonces el diseñar un experimento para responder a esta pregunta, teniendo en cuenta las condiciones que estas cepas, llamémoslas A, B, C y D requieren:
+
+    -   Frascos de un litro de capacidad por cada unidad experimental.
+    
+    -   Repeticiones biólogicas (al menos 3)
+
+:::
+
+
+::: {.column width="50%"}
+<!-- <br> -->
+
+![](images/bacteria.png){width=80% fig-align="center"}
+
+:::
+:::
+
+## Librería `{FielDHub}`
+
+
+::: columns
+::: {.column width="80%"}
+::: incremental
+-   `{FielDHub}` es una librería de R para que ayuda en la creación de diseños experimentales con enfoque hacia agricultura, reproducción de plantas, silvicultura, ciencias animales y biológicas.
+
+-   Cuenta con capacidad de crear una diversidad de diseños tales como: **DCA**, **DBCA**, **DFC**, DBCA aumentado, diseño de bloques incompletos, diseño cuadrado latino ...
+
+-   Para mayor información, puedes visitar la [página oficial de la librería](https://didiermurillof.github.io/FielDHub/){target="_blank"} o la [página en CRAN](https://cran.rstudio.com/web/packages/FielDHub/index.html){target="_blank"}
+:::
+:::
+
+::: {.column width="20%"}
+::: {layout="[[-1], [1], [-1]]"}
+![](images/fh.gif){fig-align="center"}
+:::
+:::
+:::
+
+
+
+## Diseño completamente al azar (DCA)
+
+::: incremental
+-   Es el diseño experimental más simple.
+
+-   Considera las dos fuentes principales de variación (dentro y entre tratamientos).
+
+-   Comúnmente usado en estudios de sondeo (*screening*). En el caso de nuestras bacterias, un *screening* serviría para determinar parámetros para un análisis de poder, o confirmar las pruebas en laboratorio.
+:::
+
+. . .
+
+```{r echo=T, eval=T}
+#| code-line-numbers: "2|3|4|5|6"
+library(FielDHub)                    
+dca.bacterias <- CRD(t = 4,                  # número de tratamientos    
+                     reps = 3,               # número de repeticiones por tratamiento
+                     plotNumber = 101,       # número que asignamos al primer tratamiento
+                     locationName = "Quito", # nombre del lugar donde se lleva a cabo el experimento
+                     seed = 123)             # número que hace reproducible el diseño 
+```
+
+## Diseño completamente al azar (DCA) {visibility="uncounted" auto-animate="true"}
+
+::: columns
+::: {.column .fragment width="50%"}
+Demos un vistazo al objeto `dca.bacterias`
+:::
+
+::: {.column .fragment width="50%"}
+<br>
+
+```{r echo=T, eval=T, error=T}
+dca.bacterias
+```
+:::
+:::
+
+## Diseño completamente al azar (DCA) {visibility="uncounted" auto-animate="true"}
+
+::: columns
+::: {.column width="50%"}
+Demos un vistazo al objeto `dca.bacterias`
+
+Ahora podemos tener una visualización del diseño
+:::
+
+::: {.column .fragment width="50%"}
+<br>
+
+```{r echo=T, eval=T, error=T}
+plot(dca.bacterias)
+```
+:::
+:::
+
+## Diseño completamente al azar (DCA) {visibility="uncounted" auto-animate="true"}
+
+::: columns
+::: {.column width="50%"}
+Demos un vistazo al objeto `dca.bacterias`
+
+Ahora podemos tener una visualización del diseño
+
+`{FielDHub}` nos proporciona la ubicación de nuestros tratamientos basada en una randomización automática y reproducible
+:::
+
+::: {.column width="50%"}
+<br>
+
+```{r echo=T, eval=T, error=T}
+plot(dca.bacterias)
+```
+:::
+:::
+
+## Diseño completamente al azar (DCA) {visibility="uncounted" auto-animate="true"}
+
+::: columns
+::: {.column width="50%"}
+```{r echo=T, eval=T, error=T}
+dca.bacterias$fieldBook
+```
+:::
+
+::: {.column width="50%"}
+<br>
+
+```{r echo=F, eval=T, error=T}
+plot(dca.bacterias)
+```
+:::
+:::
+
+. . .
+
+La disposición espacial de nuestros tratamientos está dispuesta en formato "serpentín"
+
+## Diseño completamente al azar (DCA) {visibility="uncounted" auto-animate="true"}
+
+. . .
+
+Unos toques finales
+
+::: columns
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+#| code-line-numbers: "1-4|6|8|9|13"
+trt <- c("Cepa_A",
+         "Cepa_B",
+         "Cepa_C",
+         "Cepa_D")
+
+trt_lista <- data.frame(TREATMENT = trt, REP = 3)
+
+dca.bacterias_2 <- CRD(t = NULL,
+                       reps = NULL,
+                       plotNumber = 101,
+                       seed = 123,
+                       locationName = "Quito",
+                       data = trt_lista)
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+plot(dca.bacterias_2)
+```
+:::
+:::
+
+## Diseño completamente al azar (DCA) {visibility="uncounted" auto-animate="true"}
+
+Unos toques finales
+
+::: columns
+::: {.column width="50%"}
+```{r echo=T, eval=T, error=T}
+dca.bacterias_2$fieldBook
+```
+:::
+
+::: {.column width="50%"}
+```{r echo=T, eval=T, error=T}
+plot(dca.bacterias_2)
+```
+:::
+:::
+
+## Ventajas y desventajas del DCA
+
+::: incremental
+
+-   **Ventajas**:
+
+    -   Su implementación y análisis son los más sencillos de todos los diseños experimentales
+    
+    -   Es flexible (permite cualquier número de tratamientos, repeticiones)
+    
+
+-   **Desventajas**:
+
+    -   Su implementación está limitada a ambientes muy bien controlados y unidades experimentales dentro de cada tratamiento bastante homogéneas. Por ello, es muy dificil su implementación en ambientes abiertos (por ejemplo, experimentos al aire libre).
+    
+    -   Al no controlar otras fuentes de variación, es menos preciso que otros diseños.
+
+:::
+
+## Ecuación del DCA
+
+-   Matemáticamente un DCA se puede representar con la siguiente fórmula:
+
+$$
+Y_{i,j} = \beta_0 + \beta_i\,\text{Factor}_i + \epsilon
+$$
+
+Donde: 
+
+$Y_{i,j}$: es la observación del factor $i$ de la repetición $j$
+
+$\beta_0$: es el parámetro de locación del modelo
+
+$\beta_i$: es el coeficiente del factor $i$
+
+$\epsilon$: es el error aleatorio del modelo
+
+<!-- ## Ejercicio 2.1 -->
+
+<!-- ¿Cuál sería la disposición de las botellas en una estantería bajo un DCA, si tenemos 6 cepas ("cepa_1" hasta "cepa_6") y planeamos tener 4 repeticiones por tratamiento?, (utiliza `seed = 1460`) -->
+
+## Diseño en bloques completamente al azar (DBCA)
+
+::: incremental
+-   Un DBCA introduce el modelado de una tercera fuente de variación: el bloque
+
+-   El bloque es una adición que ayuda a controlar mejor los errores aleatorios al disponer los tratamientos randomizados en tantas unidades físicas como repeticiones se desee.
+
+-   El bloque en el contexto del experimentador, podría referirse en nuestro ejemplo, a las estanterías que utilizaríamos para colocar nuestras botellas con medio de cultivo. Es de esperarse que al encontrarse las estanterías expuestas a pequeñas diferencias (luz, humedad, temperatura) entre una y otra, sus errores aleatorios sean distintos.
+
+-   El efecto del bloque busca regularizar dichas diferencias.
+:::
+
+## Diseño en bloques completamente al azar (DBCA) {visibility="uncounted"}
+
+```{r echo=T, eval=T}
+#| code-line-numbers: "1|2|3|4|7"
+dbca.bacterias <- RCBD(t = NULL,
+                       reps = 3,                    
+                       l = 1,                  # número de locaciones
+                       plotNumber = 101,       
+                       locationNames = "Quito", 
+                       seed = 123,
+                       data = trt_lista)       
+```
+
+::: columns
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+dbca.bacterias$fieldBook
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+plot(dbca.bacterias)
+```
+:::
+:::
+
+## Ventajas y desventajas del DBCA
+
+::: incremental
+
+-   **Ventajas**:
+
+    -   Tiene mayor precisión que el DCA al controlar una fuente extra de variación.
+
+    -   Es mejor que el DCA en experimentos al aire libre.
+
+-   **Desventajas**:
+
+    -   Cuando el número de tratamientos se incrementa, el número de bloques también. Esto hace que mantener la homogeneidad de los bloques resulte más difícil de controlar.
+
+:::
+
+## Ecuación del DBCA
+
+$$
+Y_{i,j,k} = \beta_0 + \beta_i\,\text{Factor}_i + \beta_j\,\text{Bloque}_j+ \epsilon
+$$
+
+Donde: 
+
+$Y_{i,j,k}$: es la observación del factor $i$ del bloque $j$ de la repetición $k$
+
+$\beta_i$: es el coeficiente del factor $i$
+
+$\beta_j$: es el coeficiente del bloque $j$
+
+
+<!-- ## Ejercicio 2.2 -->
+
+<!-- ¿Cuál sería la disposición de las botellas en 3 estanterías bajo un DBCA, si tenemos 6 cepas ("cepa_1" hasta "cepa_6")?, (utiliza `seed = 1460`) -->
+
+## Diseño factorial completo (DFC)
+
+::: incremental
+-   Antes de continuar, no hemos definido exactamente qué entendemos por tratamiento.
+
+-   En nuestro ejemplo, el tratamiento ha sido determinado por las distintas cepas a evaluar.
+
+-   Sin embargo, es más común encontrarnos con preguntas de investigación que tienen mayor nivel de complejidad:
+
+    -   Desde el punto de vista biológico, el saber si una determinada cepa puede degradar N a una única concentración no parece tan crucial. De manera lógica, sería de mayor interés el evaluar las cepas a distintas concentraciones de N.
+:::
+
+## Diseño factorial completo (DFC) {.smaller visibility="uncounted"}
+
+::: incremental
+-   Es decir, hasta el momento, nuestros tratamientos están definidos por dos factores:
+
+    -   Las 4 cepas bacterianas
+
+    -   Una única concentración de N
+
+-   ¿Qué tienen en común estos dos factores? [¡ambos son controlados por el investigador!]{.fragment style="color:red;"}
+
+-   En resumen, un tratamiento se define cómo el uso de un solo factor o la combinación de dos o más factores a evaluar en un conjunto (muestra) de unidades experimentales y sobre los cuales el investigador tiene control.
+
+-   Un factor está conformado por $n$ niveles, en nuestro ejemplo hasta el momento tenemos lo siguiente:
+
+    -   Factor 1: Cepa
+        -   Niveles: 4 ("A", "B", "C" y "D")
+    -   Factor 2: Concentración de N
+        -   Niveles: 1 (una misma concentración de N para todos los niveles del factor 1)
+:::
+
+## Diseño factorial completo (DFC) {.smaller visibility="uncounted"}
+
+::: incremental
+-   Regresando al hecho de que evaluar las cepas a distintas concentraciones de N sería mas interesante, el DFC nos ofrece precisamente esa posibilidad.
+
+-   El DFC es una extensión del DCA y el DBCA que nos permite evaluar tratamientos donde los factores que los conforman tienen 2 o más niveles cada uno.
+
+-   Así, digamos que queremos evaluar 3 distintas concentraciones de N. Entonces, nuestros tratamientos estarán determinados por los factores cepa y N de la siguiente manera:
+
+    -   Factor 1: Cepa
+        -   Niveles: 4 ("A", "B", "C", "D")
+    -   Factor 2: Concentración de N
+        -   Niveles: 3 ("N1", "N2", "N3")
+:::
+
+## Diseño factorial completo (DFC) {.smaller .scrollable visibility="uncounted"}
+
+DCA factorial completo
+
+```{r echo=T, eval=T}
+#| code-line-numbers: "1|2|3|5|6|8|12"
+FACTORS <- rep(c("CEPA", "N"), c(4,3))
+LEVELS <- c("A", "B", "C", "D", "N1", "N2", "N3")
+data_factorial <- data.frame(FACTOR = FACTORS, LEVEL = LEVELS)
+
+dfc.dca.bacterias <- full_factorial(setfactors = NULL,
+                                    reps = 3,
+                                    l = 1,
+                                    type = 1,
+                                    plotNumber = 101,
+                                    seed = 123,
+                                    locationNames = "Quito",
+                                    data = data_factorial)
+
+```
+
+::: columns
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+head(dfc.dca.bacterias$fieldBook, 14)
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+plot(dfc.dca.bacterias)
+```
+:::
+:::
+
+## Diseño factorial completo (DFC) {.smaller visibility="uncounted"}
+
+DBCA factorial completo
+
+```{r echo=T, eval=T}
+#| code-line-numbers: "4"
+dfc.dbca.bacterias <- full_factorial(setfactors = NULL,
+                                     reps = 3,
+                                     l = 1,
+                                     type = 2,
+                                     plotNumber = 101,
+                                     seed = 123,
+                                     locationNames = "Quito",
+                                     data = data_factorial)
+
+```
+
+::: columns
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+head(dfc.dbca.bacterias$fieldBook, 14)
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+plot(dfc.dbca.bacterias)
+```
+:::
+:::
+
+## Ventajas y desventajas del DCF
+
+::: incremental
+
+-   **Ventajas**:
+
+    -   En este tipo de diseños podemos introducir interacciones entre factores.
+    
+    -   Puede ayudar a responder varias preguntas a la vez gracias a las múltiples combinaciones entre sus factores.
+
+-   **Desventajas**:
+
+    -   Puede resultar en enormes números de unidades experimentales a medida que los niveles de los factores incrementan.
+    
+    -   La complejidad de la interpretación de sus resultados aumenta también al introducir más factores, sobre todo de las interacciones entre estos, que muchas veces resultan en conclusiones carentes de sentido.
+
+:::
+
+## Ecuación del DCF (de dos factores)
+
+$$
+Y_{i,j,k} = \beta_0 + \beta_i\text{Factor}_i + \beta_j\,\text{Factor}_j + \beta_{ij}\,\text{Factor}_i\times\text{Factor}_j+\epsilon
+$$
+Donde: 
+
+$Y_{i,j,k}$: es la observación del factor $i$ del bloque $j$ de la repetición $k$
+
+$\beta_i$: es el coeficiente del factor $i$
+
+$\beta_j$: es el coeficiente del factor $j$
+
+$\beta_ij$: es el coefficiente de la interacción de los factores $i$ y $j$
+
+<!-- ## Ejercicio 2.3 -->
+
+<!-- En nuestro ejemplo de las bacterias degradadoras de N: -->
+
+<!-- -   El investigador ha decidido deshechar la cepa D por encontrarla poco eficiente en ensayos separados, por lo tanto el factor bacteria ahora cuenta únicamente con tres niveles. -->
+
+<!-- -   Además, está también interesado en evaluar la reducción de fósforo en 3 concentraciones (P1, P2 y P3) -->
+
+<!--     -   ¿Cómo serían las disposiciones de las botellas de medio de cultivo bajo un DCA y un DBCA factoriales completos si queremos 3 repeticiones? -->
+
+<!--     -   ¿Cuál es el número total de tratamientos ahora? -->
+
+<!--     -   ¿Cuál es el número total de unidades experimentales ahora? -->
+    
+
+##  Diseño Cuadrado Latino (DCL) {.smaller}
+
+::: incremental
+
+-   A diferencia del DBCA, el DCL incluye dos factores de bloque en lugar de uno. Además, estos factores de bloque corresponden a variables de interés del investigador (ya no, como en el ejemplo anterior, que los bloques podían corresponder a locaciones físicas por ejemplo)
+
+-   La ventaja de este tipo de diseños es que fraccionan (reducen) el número de unidades experimentales que serían necesarias con otros diseños.
+
+-   Como condición presenta que los factores tienen que tener igual número de níveles.
+
+-   En el ejemplo de las bacterias, supongamos que retiramos una cepa y agregamos el fósforo como factor de interés:
+
+    -   Factor 1: Cepa (tratamiento principal)
+        -   Niveles: 3 ("A", "B", "C")
+    -   Factor 2: Concentración de N (factor de bloque)
+        -   Niveles: 3 ("N1", "N2", "N3")
+    -   Factor 3: Concentración de P (factor de bloque)
+        -   Niveles: 3 ("P1", "P2", "P3")
+
+:::
+
+##  Diseño Cuadrado Latino (DCL) {visibility="uncounted" .smaller}
+
+::: incremental
+
+-   Bajo un DBCA factorial con 3 repeticiones, necesitaríamos 81 unidades experimentales, mientras que bajo un DCL, necesitaríamos 27.
+
+-   Podemos generalizar el número total de observaciones para un DCL si aplicamos la siguiente fórmula: siendo $K$ el número de niveles todos los factores, el número total de unidades experimentales que necesitamos es igual a:
+:::
+
+. . .
+
+
+```{=tex}
+\begin{align}
+\text{UE} &=\text{número de repeticiones} \times K^2
+\end{align}
+```
+
+-   Esta reducción en el número de unidades experimentales es conseguido gracias a ordenar al azar las unidades experimentales en un cuadrado (de ahí su nombre) donde el número de filas y columnas es igual a $K$ niveles se consideren.
+
+-   Esta optimización de recursos tienen un costo, en un DCL no es posible estimar coeficientes para interacciones.
+
+
+##  Diseño Cuadrado Latino (DCL) {.smaller visibility="uncounted"}
+
+```{r echo=T, eval=T}
+#| code-line-numbers: "1|2|3|5"
+latin_data <- data.frame(list(ROW = paste("P", 1:3, sep = ""),
+                              COLUMN = paste("N", 1:3, sep = ""),
+                              TREATMENT = paste("Cepa", 1:3, sep ="")))
+
+dcl.bacterias <- latin_square(t = NULL,
+                              reps = 3,
+                              plotNumber = 101,
+                              locationNames = "Quito",
+                              seed = 1985,
+                              data = latin_data)
+
+```
+
+::: columns
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+head(dcl.bacterias$fieldBook, 14)
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+plot(dcl.bacterias)
+```
+:::
+:::
+
+## Ventajas y desventajas del DCL
+
+::: incremental
+
+-   **Ventajas**:
+
+    -   DCL es más eficiente que DBCA y DCA gracias al introducir un "bloque" extra. Esto implica el uso de un reducido número de unidades experimentales
+    
+-   **Desventajas**:
+
+    -   La necesidad de contar con el mismo número de niveles en ambos factores puede ser considerada como una desventaja.
+    
+    -   Bajo un DCL **NO** se pueden estudiar interacciones entre los factores. Esto debido a que la matriz del modelo no es ortogonal para poder estimar dichos efectos. 
+
+:::
+
+## Ecuación del DCL
+
+$$
+Y_{i,j,k,l} = \beta_0 + \beta_i\text{Factor}_i + \beta_j\,\text{Fila}_j + \beta_{k}\,\text{Columna}_k+\epsilon
+$$
+
+$Y_{i,j,k,l}$: es la observación del factor $i$ de la fila $j$ de la columna $k$ de la repetición $l$
+
+$\beta_i$: es el coeficiente del factor $i$
+
+$\beta_j$: es el coeficiente de la fila $j$
+
+$\beta_k$: es el coeficiente de la columna $k$
+
+
+## Usando el `fieldBook`
+
+-   La tabla de datos `fieldBook` podemos exportarla a un archivo Excel con ayuda de la librería `openxlsx`
+
+```{r echo=T, eval=F, error=T}
+#| code-line-numbers: "1|2"
+install.packages("openxlsx")
+openxlsx::write.xlsx(dca.bacterias_2$fieldBook, file = "dca_bacterias.xlsx")
+```
+
+. . .
+
+![](images/xls.png){fig-align="center"}
+
+<!-- ## Ejercicio 2.4 -->
+
+<!-- Exporta las tablas `fieldBook` de los ejercicios anteriores a archivos de Excel. Recuerda el comando `setwd()` -->
+
+## Otros diseños experimentales {.smaller}
+
+`{FielDHub}` nos ofrece las funciones de planificar otros diseños tales como:
+
+::: incremental
+
+-   **Diseño split-plot:** muy popular en agricultura. Se basa en modelar dos factores. 
+
+    -   Parcela total: un factor difícil de aplicar (tipo de arado por ejemplo).
+    
+    -   Sub parcela: factores fáciles de cambiar (tipo de fertilizante, semilla plantada). 
+
+-   **DBCA aumentado:** es una variación del DBCA donde se reducen el número de repeticiones de ciertos tratamientos (el control por lo general). En un DBCA clásico, se aplicaría el control con tantas repeticiones tenga el resto de tratamientos por cada bloque. En el DBCA aumentado, el control se aplicaría una sola vez por bloque.
+
+-   **Alfa lattice:** otra variación del DBCA donde cada bloque es reorganizado en sub-bloques. Cada sub-bloque contiene un subset del total de los tratamientos (incompleto). Esto ayuda a reducir la variabilidad y aumentar la precisión sin tener todos los tratamientos en el mismo bloque.
+
+:::
+
+##
 
 ::: columns
 ::: {.column width="60%"}
-
 ::: {.title data-id="title"}
 Fin del módulo 6
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Créditos de fotos
 
 Foto portada por <a href="https://unsplash.com/@adele_payman?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Adele Payman</a> en <a href="https://unsplash.com/photos/green-leafed-plants-during-daytime-2oYMwuFgnTg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-  
 
 Foto final por <a href="https://unsplash.com/@willwalker?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Will Walker</a> en <a href="https://unsplash.com/photos/selective-focus-photography-of-brown-plant-during-daytime-9DlpdOHsqzM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-  
 
 Resto de fotos: Varias fuentes
 :::
-
 :::
 
 ::: {.column width="37.5%"}
-
 ![](images/icon1_nb.png){style="margin-left:120px"}
-
-
 :::
 :::
 

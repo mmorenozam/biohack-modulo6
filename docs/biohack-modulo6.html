@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -324,6 +389,10 @@
       margin-right: 0; 
     }
   </style>
+  <link href="site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+
+  <script src="site_libs/tabwid-1.1.3/tabwid.js"></script>
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -342,6 +411,945 @@
 <p>Mauricio Moreno, PhD</p>
 </div></div>
 <p><img data-src="images/adele-payman-2oYMwuFgnTg-unsplash.jpg" class="image-left"></p>
+</section>
+<section id="generalidades" class="slide level2 smaller">
+<h2>Generalidades</h2>
+<div>
+<ul>
+<li class="fragment"><p>El pionero en introducir la idea del diseño experimental fue <a href="https://en.wikipedia.org/wiki/Charles_Sanders_Peirce" target="_blank">Charles S. Peirce</a> al introducir la randomización en experimentos de laboratorio en los años 1800s.</p></li>
+<li class="fragment"><p>Por otra parte, considerado como uno de los mayores referentes de la estadística moderna, <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Ronald Fisher</a> publicó en los años 1926 y 1935 los libros <em>The Arrangement of Field Experiments</em> y <em>The Design of Experiments</em>, que nacieron de la necesidad de mejorar la experimentación en la Agricultura.</p></li>
+<li class="fragment"><p>Hasta el día de hoy, los principios y diseños experimentales propuestos por Fisher son ampliamente usados en todas las ciencias.</p></li>
+<li class="fragment"><p>No debemos confundir el diseño experimental con el observacional.</p></li>
+<li class="fragment"><p>Así también, toda la metodología que vimos en el módulo anterior no se aplica exclusivamente a diseños experimentales.</p></li>
+</ul>
+</div>
+</section>
+<section id="introducción-al-diseño-experimental" class="slide level2 smaller">
+<h2>Introducción al diseño experimental</h2>
+<div>
+<ul>
+<li class="fragment"><p>El diseño experimental es el proceso de planear un experimento con el cual se busca probar una hipótesis acerca de una variable dependiente (llamada también de respuesta) en función del cambio de otras variables independientes.</p></li>
+<li class="fragment"><p>Tiene dos principios generales:</p>
+<ul>
+<li class="fragment"><p><strong>Repetición/replicación</strong>: es la aplicación de los tratamientos a un determinado número de unidades experimentales. Mínimo (aunque no recomendable), dos unidades.</p></li>
+<li class="fragment"><p><strong>Aleatoriedad/randomización</strong>: la asignación de unidades experimentales a un tratamiento debe realizarse al azar.</p></li>
+</ul></li>
+<li class="fragment"><p>Entre sus objetivos tiene el modelar la variabilidad de los datos y establecer si existen o no diferencias entre las medias aritméticas de los tratamientos que los generaron.</p></li>
+<li class="fragment"><p>La importancia de modelar adecuadamente la variabilidad radica en que mientras mejor se lo consiga, más confiables serán las inferencias que hagamos a partir nuestro experimento.</p></li>
+</ul>
+</div>
+</section>
+<section id="principales-fuentes-de-variación" class="slide level2">
+<h2>Principales fuentes de variación</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Variación dentro de los tratamientos</strong>: dada por la diferencia entre las repeticiones dentro de un tratamiento con respecto a su media aritmética.</p></li>
+<li class="fragment"><p><strong>Variación entre los tratamientos</strong>: dada por la aplicación del tratamiento.</p></li>
+<li class="fragment"><p><strong>Error experimental</strong>: dada por factores de poco o completamente ajenos al control del investigador.</p></li>
+<li class="fragment"><p>Cómo veremos más adelante, dependiendo del diseño experimental, otras fuentes de variación serán tomadas en cuenta.</p></li>
+</ul>
+</div>
+</section>
+<section id="tipos-de-diseño-experimental" class="slide level2 smaller">
+<h2>Tipos de diseño experimental</h2>
+<div>
+<ul>
+<li class="fragment"><p>Tradicionales</p>
+<ul>
+<li class="fragment"><p>Se basan <strong>fundamentalmente</strong> en el principio de la ortogonalidad <span class="fragment">(las variables independientes que explican a una variable no deben estar correlacionadas)</span></p></li>
+<li class="fragment"><p>Para cumplir la ortogonalidad, es común a veces requerir de muchas observaciones.</p></li>
+<li class="fragment"><p>Por tanto, son fáciles de planear, pero pueden resultar no viables en la práctica</p></li>
+</ul></li>
+<li class="fragment"><p>Óptimos</p>
+<ul>
+<li class="fragment"><p>En lugar de la ortogonalidad, utilizan <a href="https://en.wikipedia.org/wiki/Optimal_experimental_design" target="_blank">criterios de optimización</a> para reducir el efecto de correlaciones.</p></li>
+<li class="fragment"><p>Son mucho más difícil de planear, pero generalmente son más fáciles de implementar.</p></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section>
+<section id="antes-de-continuar" class="title-slide slide level1 center">
+<h1>Antes de continuar</h1>
+
+</section>
+<section id="repeticiones-técnicas-y-biológicas" class="slide level2 nostrech smaller">
+<h2>Repeticiones técnicas y biológicas</h2>
+
+<img data-src="images/replicates.png" class="quarto-figure quarto-figure-center r-stretch" style="width:10.0%"><div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Técnicas:</strong> El enfoque es hacer inferencias sobre un inviduo o probando un método, esto por cuanto es natural que las medidas al venir de una misma unidad experimental estén correlacionadas. Se necesitan modelos lineales <strong>mixtos</strong> y modelos lineales generalizados <strong>mixtos</strong> para su análisis.</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Biológicas:</strong> para hacer inferencias acerca de una población en general. El principio de independencia se mantiene y por tanto requieren metodología estándar (modelos lineales y modelos lineales generalizados).</p>
+</div></div>
+<div class="footer">
+<p>Imagen tomada de <a href="https://www.embopress.org/doi/full/10.15252/embj.201592958" target="_blank">aquí</a></p>
+</div>
+</div>
+</section>
+<section id="pseudo-repeticiones" class="slide level2 nostrech smaller">
+<h2>Pseudo repeticiones</h2>
+
+<img data-src="images/pseudorep.jpeg" class="quarto-figure quarto-figure-center r-stretch" style="width:10.0%"><div class="fragment">
+<p>Son comunes en agricultura y ecología. Hay que evitarlas en la medida de lo posible por problemas de randomización. Requieren también modelos <strong>mixtos</strong> para su análisis.</p>
+<div class="footer">
+<p>Imagen tomada de <a href="https://bookdown.org/kmbm92/Applied-Biostats/sampling.html" target="_blank">aquí</a></p>
+</div>
+</div>
+</section>
+<section id="revisitando-el-tamaño-de-muestra-análisis-de-poder" class="slide level2 smaller">
+<h2>Revisitando el tamaño de muestra (análisis de poder)</h2>
+<div>
+<ul>
+<li class="fragment"><p>La estimación del tamaño de muestra no es siempre una tarea sencilla.</p></li>
+<li class="fragment"><p>Depende del tipo de variable dependiente y el modelo estadístico a usarse.</p></li>
+<li class="fragment"><p>Además, requiere de información previa que muchas veces no es fácil de estimar:</p>
+<ul>
+<li class="fragment"><p><strong>Tamaños del efecto</strong> (cuya fórmula cambia dependiendo del modelo estadístico)</p></li>
+<li class="fragment"><p>Y otros dependiendo del modelo estadístico tales como: desviación estándar agrupada, tamaño de efecto de Cohen y correlación.</p></li>
+</ul></li>
+<li class="fragment"><p>Para tener una idea de estos parámetros, uno puede valerse de estudios piloto o buscar valores en la literatura.</p></li>
+<li class="fragment"><p>Para ilustrar solo un caso, vamos a tomar en cuenta el caso del <strong>ANOVA (de una vía, balanceado)</strong></p></li>
+</ul>
+</div>
+</section>
+<section id="tamaño-de-muestra-para-el-anova-de-una-vía" class="slide level2 smaller">
+<h2>Tamaño de muestra para el ANOVA de una vía</h2>
+<p>En R tenemos dos opciones para calcularlo con los comandos <code>power.anova.test</code> y <code>pwr.anova.test</code>:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Librería base <code>{stats}</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">power.anova.test</span>(<span class="at">groups =</span> <span class="cn">NULL</span>, <span class="at">n =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-2"><a></a>                 <span class="at">between.var =</span> <span class="cn">NULL</span>, <span class="at">within.var =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-3"><a></a>                 <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Librería <code>{pwr}</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">pwr.anova.test</span>(<span class="at">k =</span> <span class="cn">NULL</span>, <span class="at">n =</span> <span class="cn">NULL</span>, </span>
+<span id="cb2-2"><a></a>               <span class="at">f =</span> <span class="cn">NULL</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, </span>
+<span id="cb2-3"><a></a>               <span class="at">power =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+<div class="fragment">
+<p>Ambas son básicamente lo mismo. En <code>{pwr}</code>, el argumento <code>f</code> se refiere al tamaño de efecto. El tamaño de efecto de un ANOVA de una vía balanceado está dado por la fórmula:</p>
+<p><span class="math display">\[
+f = \sqrt{\frac{\sigma^2_{\text{entre tratamientos}}}{\sigma^2_{\text{dentro de los tratamientos}}}}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Estos valores son las sumas de cuadrados disponibles en la tabla del ANOVA</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/anova.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="tamaño-de-muestra-para-el-anova-de-una-vía-1" class="slide level2 smaller" data-visibility="uncounted">
+<h2>Tamaño de muestra para el ANOVA de una vía</h2>
+<p>Recordando el ejemplo de ANOVA del <a href="https://mmorenozam.github.io/biohack-modulo5/biohack-modulo5.html#/anova-de-una-v%C3%ADa" target="_blank">módulo anterior</a>, supongamos que estamos interesados en llevar a cabo un experimento similar, y basándonos en ese estudio, queremos determinar nuestro tamaño de muestra. La tabla del paper se vería más o menos así:</p>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-4df11222{}.cl-4de6b3ea{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-4dea762e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-4dea9550{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4dea955a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4dea955b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-4df11222"><thead><tr style="overflow-wrap:break-word;"><th class="cl-4dea9550"><p class="cl-4dea762e"><span class="cl-4de6b3ea">Parameter</span></p></th><th class="cl-4dea9550"><p class="cl-4dea762e"><span class="cl-4de6b3ea">Sum_Squares</span></p></th><th class="cl-4dea9550"><p class="cl-4dea762e"><span class="cl-4de6b3ea">df</span></p></th><th class="cl-4dea9550"><p class="cl-4dea762e"><span class="cl-4de6b3ea">Mean_Square</span></p></th><th class="cl-4dea9550"><p class="cl-4dea762e"><span class="cl-4de6b3ea">F</span></p></th><th class="cl-4dea9550"><p class="cl-4dea762e"><span class="cl-4de6b3ea">p</span></p></th><th class="cl-4dea9550"><p class="cl-4dea762e"><span class="cl-4de6b3ea">Eta2</span></p></th><th class="cl-4dea9550"><p class="cl-4dea762e"><span class="cl-4de6b3ea">Eta2 95% CI</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-4dea955a"><p class="cl-4dea762e"><span class="cl-4de6b3ea">Treatment</span></p></td><td class="cl-4dea955a"><p class="cl-4dea762e"><span class="cl-4de6b3ea">11939.28</span></p></td><td class="cl-4dea955a"><p class="cl-4dea762e"><span class="cl-4de6b3ea">4</span></p></td><td class="cl-4dea955a"><p class="cl-4dea762e"><span class="cl-4de6b3ea">2984.82</span></p></td><td class="cl-4dea955a"><p class="cl-4dea762e"><span class="cl-4de6b3ea">13.61</span></p></td><td class="cl-4dea955a"><p class="cl-4dea762e"><span class="cl-4de6b3ea">&lt; .001</span></p></td><td class="cl-4dea955a"><p class="cl-4dea762e"><span class="cl-4de6b3ea">0.31</span></p></td><td class="cl-4dea955a"><p class="cl-4dea762e"><span class="cl-4de6b3ea">[0.19, 1.00]</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-4dea955b"><p class="cl-4dea762e"><span class="cl-4de6b3ea">Residuals</span></p></td><td class="cl-4dea955b"><p class="cl-4dea762e"><span class="cl-4de6b3ea">26313.52</span></p></td><td class="cl-4dea955b"><p class="cl-4dea762e"><span class="cl-4de6b3ea">120</span></p></td><td class="cl-4dea955b"><p class="cl-4dea762e"><span class="cl-4de6b3ea">219.28</span></p></td><td class="cl-4dea955b"><p class="cl-4dea762e"><span class="cl-4de6b3ea"></span></p></td><td class="cl-4dea955b"><p class="cl-4dea762e"><span class="cl-4de6b3ea">      </span></p></td><td class="cl-4dea955b"><p class="cl-4dea762e"><span class="cl-4de6b3ea"></span></p></td><td class="cl-4dea955b"><p class="cl-4dea762e"><span class="cl-4de6b3ea"></span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(pwr)</span>
+<span id="cb3-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a></a>n <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">1</span>)</span>
+<span id="cb3-4"><a></a>curva_poder <span class="ot">&lt;-</span> <span class="fu">pwr.anova.test</span>(<span class="at">k =</span> <span class="dv">5</span>, <span class="at">n =</span> n,</span>
+<span id="cb3-5"><a></a>                              <span class="at">f =</span> <span class="fu">sqrt</span>(<span class="fl">11939.28</span><span class="sc">/</span><span class="fl">26313.52</span>), </span>
+<span id="cb3-6"><a></a>                              <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb3-7"><a></a>curva_poder_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(n, </span>
+<span id="cb3-8"><a></a>                             <span class="at">poder =</span> curva_poder<span class="sc">$</span>power)</span>
+<span id="cb3-9"><a></a>curva_poder_df <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> poder)) <span class="sc">+</span></span>
+<span id="cb3-11"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-12"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb3-13"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb3-14"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-15"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="inconvenientes-con-el-tamaño-de-muestra" class="slide level2 smaller">
+<h2>Inconvenientes con el tamaño de muestra</h2>
+<div>
+<ul>
+<li class="fragment"><p>El ejemplo de tamaño de muestra que vimos corresponde a un caso de “fórmula cerrada”.</p></li>
+<li class="fragment"><p>Una fórmula cerrada es el nombre que se le da a una solución analítica.</p></li>
+<li class="fragment"><p>La mayoría de modelos estadísticos clásicos tienen soluciones analíticas.</p></li>
+<li class="fragment"><p>Con modelos más complejos (mixtos y también óptimos), sus tamaños de muestra pueden ser aproximados con fórmulas cerradas de modelos clásicos.</p></li>
+<li class="fragment"><p>Sin embargo para estos últimos (sobre todo en el ámbito académico), es preferible utilizar estimación de muestra por medio de simulaciones.</p></li>
+<li class="fragment"><p>Llevar a cabo simulaciones es complejo e implica un muy buen entendimiento de la matemática detrás de cada modelo.</p></li>
+<li class="fragment"><p>Entonces, ¿qué podemos hacer?</p></li>
+</ul>
+</div>
+</section>
+<section id="cuando-el-modelo-no-es-tan-complejo-simr" class="slide level2">
+<h2>Cuando el modelo no es tan complejo: <code>{simr}</code></h2>
+<div>
+<ul>
+<li class="fragment"><p><code>{simr}</code> es una librería de R que ofrece funciones para el análisis de poder de modelos líneales generalizados <strong>mixtos</strong> llevando a cabo las simulaciones por nosotros de una manera automatizada.</p></li>
+<li class="fragment"><p><code>{simr}</code> basa su funcionamiento en la librería <code>{lme4}</code> y por lo tanto padece de las limitaciones de esta última (por ejemplo: datos expresados en forma de proporciones o porcentajes no son posibles de modelar con <code>{lme4}</code>).</p></li>
+<li class="fragment"><p><code>{simr}</code> en si misma también posee varias limitaciones, entre ellas: sintaxis confusa (sobre todo para usuarios principiantes), tender a ser sumamente lento a medida que la complejidad del modelo aumenta, incapacidad de ser paralelizado fácilmente.</p></li>
+</ul>
+</div>
+</section>
+<section id="cuando-las-fórmulas-cerradas-y-simr-nos-han-fallado" class="slide level2">
+<h2>Cuando las fórmulas cerradas y <code>{simr}</code> nos han fallado</h2>
+<div>
+<ul>
+<li class="fragment"><p>Si el objetivo de nuestra investigación no es llegarla a publicar en un journal de altísimo impacto, y nuestro modelo estadístico es complejo, podemos conformarnos con dos “números mágicos” que seguro has escuchado en algún momento:</p></li>
+<li class="fragment"><p><strong>3 repeticiones por tratamiento:</strong> Para todo estadístico se necesitan al menos dos observaciones para poder calcularlo. 3 es una sugerencia ampliamente usada como el número mínimo de repeticiones.</p></li>
+<li class="fragment"><p><strong>30 como tamaño total de la muestra:</strong> Cuando no se tiene manera de estimar los parámetros en un análisis de poder, se suele sugerir empezar la investigación con un número mínimo de 30 observaciones como muestra total.</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="introducción-al-diseño-de-experimentos-en-r" class="title-slide slide level1 center">
+<h1>Introducción al diseño de experimentos en R</h1>
+
+</section>
+<section id="una-historia-sobre-bacterias" class="slide level2 smaller">
+<h2>Una historia sobre bacterias</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p>Supongamos que tenemos 4 cepas de bacterias que en pruebas de laboratorio han demostrado tener buenas capacidades de degradar nitratos en agua.</p></li>
+<li><p>Para una posible producción a escala industrial, es necesario el determinar cuál de estas 4 cepas tiene la mejor eficiencia.</p></li>
+<li><p>Es necesario entonces el diseñar un experimento para responder a esta pregunta, teniendo en cuenta las condiciones que estas cepas, llamémoslas A, B, C y D requieren:</p>
+<ul>
+<li><p>Frascos de un litro de capacidad por cada unidad experimental.</p></li>
+<li><p>Repeticiones biólogicas (al menos 3)</p></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<!-- <br> -->
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/bacteria.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="librería-fieldhub" class="slide level2">
+<h2>Librería <code>{FielDHub}</code></h2>
+<div class="columns">
+<div class="column" style="width:80%;">
+<div>
+<ul>
+<li class="fragment"><p><code>{FielDHub}</code> es una librería de R para que ayuda en la creación de diseños experimentales con enfoque hacia agricultura, reproducción de plantas, silvicultura, ciencias animales y biológicas.</p></li>
+<li class="fragment"><p>Cuenta con capacidad de crear una diversidad de diseños tales como: <strong>DCA</strong>, <strong>DBCA</strong>, <strong>DFC</strong>, DBCA aumentado, diseño de bloques incompletos, diseño cuadrado latino …</p></li>
+<li class="fragment"><p>Para mayor información, puedes visitar la <a href="https://didiermurillof.github.io/FielDHub/" target="_blank">página oficial de la librería</a> o la <a href="https://cran.rstudio.com/web/packages/FielDHub/index.html" target="_blank">página en CRAN</a></p></li>
+</ul>
+</div>
+</div><div class="column" style="width:20%;">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[[-1], [1], [-1]]">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/fh.gif" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="diseño-completamente-al-azar-dca" class="slide level2">
+<h2>Diseño completamente al azar (DCA)</h2>
+<div>
+<ul>
+<li class="fragment"><p>Es el diseño experimental más simple.</p></li>
+<li class="fragment"><p>Considera las dos fuentes principales de variación (dentro y entre tratamientos).</p></li>
+<li class="fragment"><p>Comúnmente usado en estudios de sondeo (<em>screening</em>). En el caso de nuestras bacterias, un <em>screening</em> serviría para determinar parámetros para un análisis de poder, o confirmar las pruebas en laboratorio.</p></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="2|3|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(FielDHub)                    </span>
+<span id="cb4-2"><a></a>dca.bacterias <span class="ot">&lt;-</span> <span class="fu">CRD</span>(<span class="at">t =</span> <span class="dv">4</span>,                  <span class="co"># número de tratamientos    </span></span>
+<span id="cb4-3"><a></a>                     <span class="at">reps =</span> <span class="dv">3</span>,               <span class="co"># número de repeticiones por tratamiento</span></span>
+<span id="cb4-4"><a></a>                     <span class="at">plotNumber =</span> <span class="dv">101</span>,       <span class="co"># número que asignamos al primer tratamiento</span></span>
+<span id="cb4-5"><a></a>                     <span class="at">locationName =</span> <span class="st">"Quito"</span>, <span class="co"># nombre del lugar donde se lleva a cabo el experimento</span></span>
+<span id="cb4-6"><a></a>                     <span class="at">seed =</span> <span class="dv">123</span>)             <span class="co"># número que hace reproducible el diseño </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="diseño-completamente-al-azar-dca-1" class="slide level2" data-visibility="uncounted" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Diseño completamente al azar (DCA)</h2>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<p>Demos un vistazo al objeto <code>dca.bacterias</code></p>
+</div><div class="column fragment" style="width:50%;">
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb5-1" class="hljs-ln-code"><a></a>dca.bacterias</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completely Randomized Design (CRD) 
+
+Information on the design parameters: 
+List of 5
+ $ numberofTreatments: num 4
+ $ treatments        : chr [1:4] "T1" "T2" "T3" "T4"
+ $ Reps              : num 3
+ $ locationName      : chr "Quito"
+ $ seed              : num 123
+
+ 10 First observations of the data frame with the CRD field book: 
+   ID LOCATION PLOT REP TREATMENT
+1   1    Quito  101   2        T4
+2   2    Quito  102   1        T2
+3   3    Quito  103   1        T1
+4   4    Quito  104   2        T3
+5   5    Quito  105   1        T3
+6   6    Quito  106   2        T2
+7   7    Quito  107   3        T4
+8   8    Quito  108   1        T4
+9   9    Quito  109   3        T3
+10 10    Quito  110   3        T1</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="diseño-completamente-al-azar-dca-2" class="slide level2" data-visibility="uncounted" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Diseño completamente al azar (DCA)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Demos un vistazo al objeto <code>dca.bacterias</code></p>
+<p>Ahora podemos tener una visualización del diseño</p>
+</div><div class="column fragment" style="width:50%;">
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb7-1" class="hljs-ln-code"><a></a><span class="fu">plot</span>(dca.bacterias)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="diseño-completamente-al-azar-dca-3" class="slide level2" data-visibility="uncounted" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Diseño completamente al azar (DCA)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Demos un vistazo al objeto <code>dca.bacterias</code></p>
+<p>Ahora podemos tener una visualización del diseño</p>
+<p><code>{FielDHub}</code> nos proporciona la ubicación de nuestros tratamientos basada en una randomización automática y reproducible</p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb8-1" class="hljs-ln-code"><a></a><span class="fu">plot</span>(dca.bacterias)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="diseño-completamente-al-azar-dca-4" class="slide level2" data-visibility="uncounted" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Diseño completamente al azar (DCA)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb9-1" class="hljs-ln-code"><a></a>dca.bacterias<span class="sc">$</span>fieldBook</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID LOCATION PLOT REP TREATMENT
+1   1    Quito  101   2        T4
+2   2    Quito  102   1        T2
+3   3    Quito  103   1        T1
+4   4    Quito  104   2        T3
+5   5    Quito  105   1        T3
+6   6    Quito  106   2        T2
+7   7    Quito  107   3        T4
+8   8    Quito  108   1        T4
+9   9    Quito  109   3        T3
+10 10    Quito  110   3        T1
+11 11    Quito  111   3        T2
+12 12    Quito  112   2        T1</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment">
+<p>La disposición espacial de nuestros tratamientos está dispuesta en formato “serpentín”</p>
+</div>
+</section>
+<section id="diseño-completamente-al-azar-dca-5" class="slide level2" data-visibility="uncounted" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Diseño completamente al azar (DCA)</h2>
+<div class="fragment">
+<p>Unos toques finales</p>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="1-4|6|8|9|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>trt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cepa_A"</span>,</span>
+<span id="cb11-2"><a></a>         <span class="st">"Cepa_B"</span>,</span>
+<span id="cb11-3"><a></a>         <span class="st">"Cepa_C"</span>,</span>
+<span id="cb11-4"><a></a>         <span class="st">"Cepa_D"</span>)</span>
+<span id="cb11-5"><a></a></span>
+<span id="cb11-6"><a></a>trt_lista <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">TREATMENT =</span> trt, <span class="at">REP =</span> <span class="dv">3</span>)</span>
+<span id="cb11-7"><a></a></span>
+<span id="cb11-8"><a></a>dca.bacterias_2 <span class="ot">&lt;-</span> <span class="fu">CRD</span>(<span class="at">t =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-9"><a></a>                       <span class="at">reps =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-10"><a></a>                       <span class="at">plotNumber =</span> <span class="dv">101</span>,</span>
+<span id="cb11-11"><a></a>                       <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb11-12"><a></a>                       <span class="at">locationName =</span> <span class="st">"Quito"</span>,</span>
+<span id="cb11-13"><a></a>                       <span class="at">data =</span> trt_lista)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">plot</span>(dca.bacterias_2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="diseño-completamente-al-azar-dca-6" class="slide level2" data-visibility="uncounted" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Diseño completamente al azar (DCA)</h2>
+<p>Unos toques finales</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>dca.bacterias_2<span class="sc">$</span>fieldBook</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID LOCATION PLOT REP TREATMENT
+1   1    Quito  101   2    Cepa_D
+2   2    Quito  102   1    Cepa_B
+3   3    Quito  103   1    Cepa_A
+4   4    Quito  104   2    Cepa_C
+5   5    Quito  105   1    Cepa_C
+6   6    Quito  106   2    Cepa_B
+7   7    Quito  107   3    Cepa_D
+8   8    Quito  108   1    Cepa_D
+9   9    Quito  109   3    Cepa_C
+10 10    Quito  110   3    Cepa_A
+11 11    Quito  111   3    Cepa_B
+12 12    Quito  112   2    Cepa_A</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">plot</span>(dca.bacterias_2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="ventajas-y-desventajas-del-dca" class="slide level2">
+<h2>Ventajas y desventajas del DCA</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Ventajas</strong>:</p>
+<ul>
+<li class="fragment"><p>Su implementación y análisis son los más sencillos de todos los diseños experimentales</p></li>
+<li class="fragment"><p>Es flexible (permite cualquier número de tratamientos, repeticiones)</p></li>
+</ul></li>
+<li class="fragment"><p><strong>Desventajas</strong>:</p>
+<ul>
+<li class="fragment"><p>Su implementación está limitada a ambientes muy bien controlados y unidades experimentales dentro de cada tratamiento bastante homogéneas. Por ello, es muy dificil su implementación en ambientes abiertos (por ejemplo, experimentos al aire libre).</p></li>
+<li class="fragment"><p>Al no controlar otras fuentes de variación, es menos preciso que otros diseños.</p></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="ecuación-del-dca" class="slide level2">
+<h2>Ecuación del DCA</h2>
+<ul>
+<li>Matemáticamente un DCA se puede representar con la siguiente fórmula:</li>
+</ul>
+<p><span class="math display">\[
+Y_{i,j} = \beta_0 + \beta_i\,\text{Factor}_i + \epsilon
+\]</span></p>
+<p>Donde:</p>
+<p><span class="math inline">\(Y_{i,j}\)</span>: es la observación del factor <span class="math inline">\(i\)</span> de la repetición <span class="math inline">\(j\)</span></p>
+<p><span class="math inline">\(\beta_0\)</span>: es el parámetro de locación del modelo</p>
+<p><span class="math inline">\(\beta_i\)</span>: es el coeficiente del factor <span class="math inline">\(i\)</span></p>
+<p><span class="math inline">\(\epsilon\)</span>: es el error aleatorio del modelo</p>
+<!-- ## Ejercicio 2.1 -->
+<!-- ¿Cuál sería la disposición de las botellas en una estantería bajo un DCA, si tenemos 6 cepas ("cepa_1" hasta "cepa_6") y planeamos tener 4 repeticiones por tratamiento?, (utiliza `seed = 1460`) -->
+</section>
+<section id="diseño-en-bloques-completamente-al-azar-dbca" class="slide level2">
+<h2>Diseño en bloques completamente al azar (DBCA)</h2>
+<div>
+<ul>
+<li class="fragment"><p>Un DBCA introduce el modelado de una tercera fuente de variación: el bloque</p></li>
+<li class="fragment"><p>El bloque es una adición que ayuda a controlar mejor los errores aleatorios al disponer los tratamientos randomizados en tantas unidades físicas como repeticiones se desee.</p></li>
+<li class="fragment"><p>El bloque en el contexto del experimentador, podría referirse en nuestro ejemplo, a las estanterías que utilizaríamos para colocar nuestras botellas con medio de cultivo. Es de esperarse que al encontrarse las estanterías expuestas a pequeñas diferencias (luz, humedad, temperatura) entre una y otra, sus errores aleatorios sean distintos.</p></li>
+<li class="fragment"><p>El efecto del bloque busca regularizar dichas diferencias.</p></li>
+</ul>
+</div>
+</section>
+<section id="diseño-en-bloques-completamente-al-azar-dbca-1" class="slide level2" data-visibility="uncounted">
+<h2>Diseño en bloques completamente al azar (DBCA)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="1|2|3|4|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>dbca.bacterias <span class="ot">&lt;-</span> <span class="fu">RCBD</span>(<span class="at">t =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-2"><a></a>                       <span class="at">reps =</span> <span class="dv">3</span>,                    </span>
+<span id="cb16-3"><a></a>                       <span class="at">l =</span> <span class="dv">1</span>,                  <span class="co"># número de locaciones</span></span>
+<span id="cb16-4"><a></a>                       <span class="at">plotNumber =</span> <span class="dv">101</span>,       </span>
+<span id="cb16-5"><a></a>                       <span class="at">locationNames =</span> <span class="st">"Quito"</span>, </span>
+<span id="cb16-6"><a></a>                       <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb16-7"><a></a>                       <span class="at">data =</span> trt_lista)       </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>dbca.bacterias<span class="sc">$</span>fieldBook</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID LOCATION PLOT REP TREATMENT
+1   1    QUITO  101   1    Cepa_C
+2   2    QUITO  102   1    Cepa_D
+3   3    QUITO  103   1    Cepa_A
+4   4    QUITO  104   1    Cepa_B
+8   5    QUITO  201   2    Cepa_A
+7   6    QUITO  202   2    Cepa_D
+6   7    QUITO  203   2    Cepa_B
+5   8    QUITO  204   2    Cepa_C
+9   9    QUITO  301   3    Cepa_C
+10 10    QUITO  302   3    Cepa_A
+11 11    QUITO  303   3    Cepa_B
+12 12    QUITO  304   3    Cepa_D</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">plot</span>(dbca.bacterias)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="ventajas-y-desventajas-del-dbca" class="slide level2">
+<h2>Ventajas y desventajas del DBCA</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Ventajas</strong>:</p>
+<ul>
+<li class="fragment"><p>Tiene mayor precisión que el DCA al controlar una fuente extra de variación.</p></li>
+<li class="fragment"><p>Es mejor que el DCA en experimentos al aire libre.</p></li>
+</ul></li>
+<li class="fragment"><p><strong>Desventajas</strong>:</p>
+<ul>
+<li class="fragment">Cuando el número de tratamientos se incrementa, el número de bloques también. Esto hace que mantener la homogeneidad de los bloques resulte más difícil de controlar.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="ecuación-del-dbca" class="slide level2">
+<h2>Ecuación del DBCA</h2>
+<p><span class="math display">\[
+Y_{i,j,k} = \beta_0 + \beta_i\,\text{Factor}_i + \beta_j\,\text{Bloque}_j+ \epsilon
+\]</span></p>
+<p>Donde:</p>
+<p><span class="math inline">\(Y_{i,j,k}\)</span>: es la observación del factor <span class="math inline">\(i\)</span> del bloque <span class="math inline">\(j\)</span> de la repetición <span class="math inline">\(k\)</span></p>
+<p><span class="math inline">\(\beta_i\)</span>: es el coeficiente del factor <span class="math inline">\(i\)</span></p>
+<p><span class="math inline">\(\beta_j\)</span>: es el coeficiente del bloque <span class="math inline">\(j\)</span></p>
+<!-- ## Ejercicio 2.2 -->
+<!-- ¿Cuál sería la disposición de las botellas en 3 estanterías bajo un DBCA, si tenemos 6 cepas ("cepa_1" hasta "cepa_6")?, (utiliza `seed = 1460`) -->
+</section>
+<section id="diseño-factorial-completo-dfc" class="slide level2">
+<h2>Diseño factorial completo (DFC)</h2>
+<div>
+<ul>
+<li class="fragment"><p>Antes de continuar, no hemos definido exactamente qué entendemos por tratamiento.</p></li>
+<li class="fragment"><p>En nuestro ejemplo, el tratamiento ha sido determinado por las distintas cepas a evaluar.</p></li>
+<li class="fragment"><p>Sin embargo, es más común encontrarnos con preguntas de investigación que tienen mayor nivel de complejidad:</p>
+<ul>
+<li class="fragment">Desde el punto de vista biológico, el saber si una determinada cepa puede degradar N a una única concentración no parece tan crucial. De manera lógica, sería de mayor interés el evaluar las cepas a distintas concentraciones de N.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="diseño-factorial-completo-dfc-1" class="slide level2 smaller" data-visibility="uncounted">
+<h2>Diseño factorial completo (DFC)</h2>
+<div>
+<ul>
+<li class="fragment"><p>Es decir, hasta el momento, nuestros tratamientos están definidos por dos factores:</p>
+<ul>
+<li class="fragment"><p>Las 4 cepas bacterianas</p></li>
+<li class="fragment"><p>Una única concentración de N</p></li>
+</ul></li>
+<li class="fragment"><p>¿Qué tienen en común estos dos factores? <span class="fragment" style="color:red;">¡ambos son controlados por el investigador!</span></p></li>
+<li class="fragment"><p>En resumen, un tratamiento se define cómo el uso de un solo factor o la combinación de dos o más factores a evaluar en un conjunto (muestra) de unidades experimentales y sobre los cuales el investigador tiene control.</p></li>
+<li class="fragment"><p>Un factor está conformado por <span class="math inline">\(n\)</span> niveles, en nuestro ejemplo hasta el momento tenemos lo siguiente:</p>
+<ul>
+<li class="fragment">Factor 1: Cepa
+<ul>
+<li class="fragment">Niveles: 4 (“A”, “B”, “C” y “D”)</li>
+</ul></li>
+<li class="fragment">Factor 2: Concentración de N
+<ul>
+<li class="fragment">Niveles: 1 (una misma concentración de N para todos los niveles del factor 1)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="diseño-factorial-completo-dfc-2" class="slide level2 smaller" data-visibility="uncounted">
+<h2>Diseño factorial completo (DFC)</h2>
+<div>
+<ul>
+<li class="fragment"><p>Regresando al hecho de que evaluar las cepas a distintas concentraciones de N sería mas interesante, el DFC nos ofrece precisamente esa posibilidad.</p></li>
+<li class="fragment"><p>El DFC es una extensión del DCA y el DBCA que nos permite evaluar tratamientos donde los factores que los conforman tienen 2 o más niveles cada uno.</p></li>
+<li class="fragment"><p>Así, digamos que queremos evaluar 3 distintas concentraciones de N. Entonces, nuestros tratamientos estarán determinados por los factores cepa y N de la siguiente manera:</p>
+<ul>
+<li class="fragment">Factor 1: Cepa
+<ul>
+<li class="fragment">Niveles: 4 (“A”, “B”, “C”, “D”)</li>
+</ul></li>
+<li class="fragment">Factor 2: Concentración de N
+<ul>
+<li class="fragment">Niveles: 3 (“N1”, “N2”, “N3”)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="diseño-factorial-completo-dfc-3" class="slide level2 smaller scrollable" data-visibility="uncounted">
+<h2>Diseño factorial completo (DFC)</h2>
+<p>DCA factorial completo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="1|2|3|5|6|8|12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>FACTORS <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"CEPA"</span>, <span class="st">"N"</span>), <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
+<span id="cb20-2"><a></a>LEVELS <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"N1"</span>, <span class="st">"N2"</span>, <span class="st">"N3"</span>)</span>
+<span id="cb20-3"><a></a>data_factorial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FACTOR =</span> FACTORS, <span class="at">LEVEL =</span> LEVELS)</span>
+<span id="cb20-4"><a></a></span>
+<span id="cb20-5"><a></a>dfc.dca.bacterias <span class="ot">&lt;-</span> <span class="fu">full_factorial</span>(<span class="at">setfactors =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-6"><a></a>                                    <span class="at">reps =</span> <span class="dv">3</span>,</span>
+<span id="cb20-7"><a></a>                                    <span class="at">l =</span> <span class="dv">1</span>,</span>
+<span id="cb20-8"><a></a>                                    <span class="at">type =</span> <span class="dv">1</span>,</span>
+<span id="cb20-9"><a></a>                                    <span class="at">plotNumber =</span> <span class="dv">101</span>,</span>
+<span id="cb20-10"><a></a>                                    <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb20-11"><a></a>                                    <span class="at">locationNames =</span> <span class="st">"Quito"</span>,</span>
+<span id="cb20-12"><a></a>                                    <span class="at">data =</span> data_factorial)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">head</span>(dfc.dca.bacterias<span class="sc">$</span>fieldBook, <span class="dv">14</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID LOCATION PLOT REP FACTOR_CEPA FACTOR_N TRT_COMB
+1   1    Quito  101   3           A       N3     A*N3
+2   2    Quito  102   2           B       N1     B*N1
+3   3    Quito  103   3           D       N3     D*N3
+4   4    Quito  104   1           B       N3     B*N3
+5   5    Quito  105   1           B       N3     B*N3
+6   6    Quito  106   1           A       N1     A*N1
+7   7    Quito  107   2           C       N3     C*N3
+8   8    Quito  108   1           A       N1     A*N1
+9   9    Quito  109   2           D       N2     D*N2
+10 10    Quito  110   3           B       N2     B*N2
+11 11    Quito  111   3           B       N2     B*N2
+12 12    Quito  112   1           A       N1     A*N1
+13 13    Quito  113   2           D       N2     D*N2
+14 14    Quito  114   1           D       N1     D*N1</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">plot</span>(dfc.dca.bacterias)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="diseño-factorial-completo-dfc-4" class="slide level2 smaller" data-visibility="uncounted">
+<h2>Diseño factorial completo (DFC)</h2>
+<p>DBCA factorial completo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>dfc.dbca.bacterias <span class="ot">&lt;-</span> <span class="fu">full_factorial</span>(<span class="at">setfactors =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-2"><a></a>                                     <span class="at">reps =</span> <span class="dv">3</span>,</span>
+<span id="cb24-3"><a></a>                                     <span class="at">l =</span> <span class="dv">1</span>,</span>
+<span id="cb24-4"><a></a>                                     <span class="at">type =</span> <span class="dv">2</span>,</span>
+<span id="cb24-5"><a></a>                                     <span class="at">plotNumber =</span> <span class="dv">101</span>,</span>
+<span id="cb24-6"><a></a>                                     <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb24-7"><a></a>                                     <span class="at">locationNames =</span> <span class="st">"Quito"</span>,</span>
+<span id="cb24-8"><a></a>                                     <span class="at">data =</span> data_factorial)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">head</span>(dfc.dbca.bacterias<span class="sc">$</span>fieldBook, <span class="dv">14</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID LOCATION PLOT REP FACTOR_CEPA FACTOR_N TRT_COMB
+1   1    Quito  101   1           D       N2     D*N2
+2   2    Quito  102   1           B       N1     B*N1
+3   3    Quito  103   1           A       N2     A*N2
+4   4    Quito  104   1           B       N3     B*N3
+5   5    Quito  105   1           A       N3     A*N3
+6   6    Quito  106   1           C       N3     C*N3
+7   7    Quito  107   1           D       N3     D*N3
+8   8    Quito  108   1           A       N1     A*N1
+9   9    Quito  109   1           B       N2     B*N2
+10 10    Quito  110   1           C       N1     C*N1
+11 11    Quito  111   1           D       N1     D*N1
+12 12    Quito  112   1           C       N2     C*N2
+24 13    Quito  201   2           A       N3     A*N3
+23 14    Quito  202   2           B       N2     B*N2</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">plot</span>(dfc.dbca.bacterias)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="ventajas-y-desventajas-del-dcf" class="slide level2">
+<h2>Ventajas y desventajas del DCF</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Ventajas</strong>:</p>
+<ul>
+<li class="fragment"><p>En este tipo de diseños podemos introducir interacciones entre factores.</p></li>
+<li class="fragment"><p>Puede ayudar a responder varias preguntas a la vez gracias a las múltiples combinaciones entre sus factores.</p></li>
+</ul></li>
+<li class="fragment"><p><strong>Desventajas</strong>:</p>
+<ul>
+<li class="fragment"><p>Puede resultar en enormes números de unidades experimentales a medida que los niveles de los factores incrementan.</p></li>
+<li class="fragment"><p>La complejidad de la interpretación de sus resultados aumenta también al introducir más factores, sobre todo de las interacciones entre estos, que muchas veces resultan en conclusiones carentes de sentido.</p></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="ecuación-del-dcf-de-dos-factores" class="slide level2">
+<h2>Ecuación del DCF (de dos factores)</h2>
+<p><span class="math display">\[
+Y_{i,j,k} = \beta_0 + \beta_i\text{Factor}_i + \beta_j\,\text{Factor}_j + \beta_{ij}\,\text{Factor}_i\times\text{Factor}_j+\epsilon
+\]</span> Donde:</p>
+<p><span class="math inline">\(Y_{i,j,k}\)</span>: es la observación del factor <span class="math inline">\(i\)</span> del bloque <span class="math inline">\(j\)</span> de la repetición <span class="math inline">\(k\)</span></p>
+<p><span class="math inline">\(\beta_i\)</span>: es el coeficiente del factor <span class="math inline">\(i\)</span></p>
+<p><span class="math inline">\(\beta_j\)</span>: es el coeficiente del factor <span class="math inline">\(j\)</span></p>
+<p><span class="math inline">\(\beta_ij\)</span>: es el coefficiente de la interacción de los factores <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span></p>
+<!-- ## Ejercicio 2.3 -->
+<!-- En nuestro ejemplo de las bacterias degradadoras de N: -->
+<!-- -   El investigador ha decidido deshechar la cepa D por encontrarla poco eficiente en ensayos separados, por lo tanto el factor bacteria ahora cuenta únicamente con tres niveles. -->
+<!-- -   Además, está también interesado en evaluar la reducción de fósforo en 3 concentraciones (P1, P2 y P3) -->
+<!--     -   ¿Cómo serían las disposiciones de las botellas de medio de cultivo bajo un DCA y un DBCA factoriales completos si queremos 3 repeticiones? -->
+<!--     -   ¿Cuál es el número total de tratamientos ahora? -->
+<!--     -   ¿Cuál es el número total de unidades experimentales ahora? -->
+</section>
+<section id="diseño-cuadrado-latino-dcl" class="slide level2 smaller">
+<h2>Diseño Cuadrado Latino (DCL)</h2>
+<div>
+<ul>
+<li class="fragment"><p>A diferencia del DBCA, el DCL incluye dos factores de bloque en lugar de uno. Además, estos factores de bloque corresponden a variables de interés del investigador (ya no, como en el ejemplo anterior, que los bloques podían corresponder a locaciones físicas por ejemplo)</p></li>
+<li class="fragment"><p>La ventaja de este tipo de diseños es que fraccionan (reducen) el número de unidades experimentales que serían necesarias con otros diseños.</p></li>
+<li class="fragment"><p>Como condición presenta que los factores tienen que tener igual número de níveles.</p></li>
+<li class="fragment"><p>En el ejemplo de las bacterias, supongamos que retiramos una cepa y agregamos el fósforo como factor de interés:</p>
+<ul>
+<li class="fragment">Factor 1: Cepa (tratamiento principal)
+<ul>
+<li class="fragment">Niveles: 3 (“A”, “B”, “C”)</li>
+</ul></li>
+<li class="fragment">Factor 2: Concentración de N (factor de bloque)
+<ul>
+<li class="fragment">Niveles: 3 (“N1”, “N2”, “N3”)</li>
+</ul></li>
+<li class="fragment">Factor 3: Concentración de P (factor de bloque)
+<ul>
+<li class="fragment">Niveles: 3 (“P1”, “P2”, “P3”)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="diseño-cuadrado-latino-dcl-1" class="slide level2 smaller" data-visibility="uncounted">
+<h2>Diseño Cuadrado Latino (DCL)</h2>
+<div>
+<ul>
+<li class="fragment"><p>Bajo un DBCA factorial con 3 repeticiones, necesitaríamos 81 unidades experimentales, mientras que bajo un DCL, necesitaríamos 27.</p></li>
+<li class="fragment"><p>Podemos generalizar el número total de observaciones para un DCL si aplicamos la siguiente fórmula: siendo <span class="math inline">\(K\)</span> el número de niveles todos los factores, el número total de unidades experimentales que necesitamos es igual a:</p></li>
+</ul>
+</div>
+<div class="fragment">
+<span class="math display">\[\begin{align}
+\text{UE} &amp;=\text{número de repeticiones} \times K^2
+\end{align}\]</span>
+<ul>
+<li><p>Esta reducción en el número de unidades experimentales es conseguido gracias a ordenar al azar las unidades experimentales en un cuadrado (de ahí su nombre) donde el número de filas y columnas es igual a <span class="math inline">\(K\)</span> niveles se consideren.</p></li>
+<li><p>Esta optimización de recursos tienen un costo, en un DCL no es posible estimar coeficientes para interacciones.</p></li>
+</ul>
+</div>
+</section>
+<section id="diseño-cuadrado-latino-dcl-2" class="slide level2 smaller" data-visibility="uncounted">
+<h2>Diseño Cuadrado Latino (DCL)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="1|2|3|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>latin_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">list</span>(<span class="at">ROW =</span> <span class="fu">paste</span>(<span class="st">"P"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb28-2"><a></a>                              <span class="at">COLUMN =</span> <span class="fu">paste</span>(<span class="st">"N"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb28-3"><a></a>                              <span class="at">TREATMENT =</span> <span class="fu">paste</span>(<span class="st">"Cepa"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">sep =</span><span class="st">""</span>)))</span>
+<span id="cb28-4"><a></a></span>
+<span id="cb28-5"><a></a>dcl.bacterias <span class="ot">&lt;-</span> <span class="fu">latin_square</span>(<span class="at">t =</span> <span class="cn">NULL</span>,</span>
+<span id="cb28-6"><a></a>                              <span class="at">reps =</span> <span class="dv">3</span>,</span>
+<span id="cb28-7"><a></a>                              <span class="at">plotNumber =</span> <span class="dv">101</span>,</span>
+<span id="cb28-8"><a></a>                              <span class="at">locationNames =</span> <span class="st">"Quito"</span>,</span>
+<span id="cb28-9"><a></a>                              <span class="at">seed =</span> <span class="dv">1985</span>,</span>
+<span id="cb28-10"><a></a>                              <span class="at">data =</span> latin_data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">head</span>(dcl.bacterias<span class="sc">$</span>fieldBook, <span class="dv">14</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID LOCATION PLOT SQUARE ROW COLUMN TREATMENT
+1   1    Quito  101      1  P1     N1     Cepa3
+2   2    Quito  102      1  P1     N2     Cepa1
+3   3    Quito  103      1  P1     N3     Cepa2
+4   4    Quito  106      1  P2     N1     Cepa2
+5   5    Quito  105      1  P2     N2     Cepa3
+6   6    Quito  104      1  P2     N3     Cepa1
+7   7    Quito  107      1  P3     N1     Cepa1
+8   8    Quito  108      1  P3     N2     Cepa2
+9   9    Quito  109      1  P3     N3     Cepa3
+10 10    Quito  201      2  P1     N1     Cepa2
+11 11    Quito  202      2  P1     N2     Cepa1
+12 12    Quito  203      2  P1     N3     Cepa3
+13 13    Quito  206      2  P2     N1     Cepa3
+14 14    Quito  205      2  P2     N2     Cepa2</code></pre>
+</div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">plot</span>(dcl.bacterias)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="biohack-modulo6_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="ventajas-y-desventajas-del-dcl" class="slide level2">
+<h2>Ventajas y desventajas del DCL</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Ventajas</strong>:</p>
+<ul>
+<li class="fragment">DCL es más eficiente que DBCA y DCA gracias al introducir un “bloque” extra. Esto implica el uso de un reducido número de unidades experimentales</li>
+</ul></li>
+<li class="fragment"><p><strong>Desventajas</strong>:</p>
+<ul>
+<li class="fragment"><p>La necesidad de contar con el mismo número de niveles en ambos factores puede ser considerada como una desventaja.</p></li>
+<li class="fragment"><p>Bajo un DCL <strong>NO</strong> se pueden estudiar interacciones entre los factores. Esto debido a que la matriz del modelo no es ortogonal para poder estimar dichos efectos.</p></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="ecuación-del-dcl" class="slide level2">
+<h2>Ecuación del DCL</h2>
+<p><span class="math display">\[
+Y_{i,j,k,l} = \beta_0 + \beta_i\text{Factor}_i + \beta_j\,\text{Fila}_j + \beta_{k}\,\text{Columna}_k+\epsilon
+\]</span></p>
+<p><span class="math inline">\(Y_{i,j,k,l}\)</span>: es la observación del factor <span class="math inline">\(i\)</span> de la fila <span class="math inline">\(j\)</span> de la columna <span class="math inline">\(k\)</span> de la repetición <span class="math inline">\(l\)</span></p>
+<p><span class="math inline">\(\beta_i\)</span>: es el coeficiente del factor <span class="math inline">\(i\)</span></p>
+<p><span class="math inline">\(\beta_j\)</span>: es el coeficiente de la fila <span class="math inline">\(j\)</span></p>
+<p><span class="math inline">\(\beta_k\)</span>: es el coeficiente de la columna <span class="math inline">\(k\)</span></p>
+</section>
+<section id="usando-el-fieldbook" class="slide level2">
+<h2>Usando el <code>fieldBook</code></h2>
+<ul>
+<li>La tabla de datos <code>fieldBook</code> podemos exportarla a un archivo Excel con ayuda de la librería <code>openxlsx</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">install.packages</span>(<span class="st">"openxlsx"</span>)</span>
+<span id="cb32-2"><a></a>openxlsx<span class="sc">::</span><span class="fu">write.xlsx</span>(dca.bacterias_2<span class="sc">$</span>fieldBook, <span class="at">file =</span> <span class="st">"dca_bacterias.xlsx"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/xls.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<!-- ## Ejercicio 2.4 -->
+<!-- Exporta las tablas `fieldBook` de los ejercicios anteriores a archivos de Excel. Recuerda el comando `setwd()` -->
+</div>
+</section>
+<section id="otros-diseños-experimentales" class="slide level2 smaller">
+<h2>Otros diseños experimentales</h2>
+<p><code>{FielDHub}</code> nos ofrece las funciones de planificar otros diseños tales como:</p>
+<div>
+<ul>
+<li class="fragment"><p><strong>Diseño split-plot:</strong> muy popular en agricultura. Se basa en modelar dos factores.</p>
+<ul>
+<li class="fragment"><p>Parcela total: un factor difícil de aplicar (tipo de arado por ejemplo).</p></li>
+<li class="fragment"><p>Sub parcela: factores fáciles de cambiar (tipo de fertilizante, semilla plantada).</p></li>
+</ul></li>
+<li class="fragment"><p><strong>DBCA aumentado:</strong> es una variación del DBCA donde se reducen el número de repeticiones de ciertos tratamientos (el control por lo general). En un DBCA clásico, se aplicaría el control con tantas repeticiones tenga el resto de tratamientos por cada bloque. En el DBCA aumentado, el control se aplicaría una sola vez por bloque.</p></li>
+<li class="fragment"><p><strong>Alfa lattice:</strong> otra variación del DBCA donde cada bloque es reorganizado en sub-bloques. Cada sub-bloque contiene un subset del total de los tratamientos (incompleto). Esto ayuda a reducir la variabilidad y aumentar la precisión sin tener todos los tratamientos en el mismo bloque.</p></li>
+</ul>
+</div>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
@@ -376,7 +1384,7 @@
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -726,6 +1734,82 @@
     menu_div = document.querySelector(".progress");
     document.querySelector(".slides").appendChild(menu_div);
     </script>
+
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {

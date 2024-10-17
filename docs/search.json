@@ -7,6 +7,293 @@
     "text": "Módulo 6: Principios básicos de Diseño de Experimentos\n\nMauricio Moreno, PhD"
   },
   {
+    "objectID": "biohack-modulo6.html#generalidades",
+    "href": "biohack-modulo6.html#generalidades",
+    "title": "biohack-modulo6",
+    "section": "Generalidades",
+    "text": "Generalidades\n\n\nEl pionero en introducir la idea del diseño experimental fue Charles S. Peirce al introducir la randomización en experimentos de laboratorio en los años 1800s.\nPor otra parte, considerado como uno de los mayores referentes de la estadística moderna, Ronald Fisher publicó en los años 1926 y 1935 los libros The Arrangement of Field Experiments y The Design of Experiments, que nacieron de la necesidad de mejorar la experimentación en la Agricultura.\nHasta el día de hoy, los principios y diseños experimentales propuestos por Fisher son ampliamente usados en todas las ciencias.\nNo debemos confundir el diseño experimental con el observacional.\nAsí también, toda la metodología que vimos en el módulo anterior no se aplica exclusivamente a diseños experimentales."
+  },
+  {
+    "objectID": "biohack-modulo6.html#introducción-al-diseño-experimental",
+    "href": "biohack-modulo6.html#introducción-al-diseño-experimental",
+    "title": "biohack-modulo6",
+    "section": "Introducción al diseño experimental",
+    "text": "Introducción al diseño experimental\n\n\nEl diseño experimental es el proceso de planear un experimento con el cual se busca probar una hipótesis acerca de una variable dependiente (llamada también de respuesta) en función del cambio de otras variables independientes.\nTiene dos principios generales:\n\nRepetición/replicación: es la aplicación de los tratamientos a un determinado número de unidades experimentales. Mínimo (aunque no recomendable), dos unidades.\nAleatoriedad/randomización: la asignación de unidades experimentales a un tratamiento debe realizarse al azar.\n\nEntre sus objetivos tiene el modelar la variabilidad de los datos y establecer si existen o no diferencias entre las medias aritméticas de los tratamientos que los generaron.\nLa importancia de modelar adecuadamente la variabilidad radica en que mientras mejor se lo consiga, más confiables serán las inferencias que hagamos a partir nuestro experimento."
+  },
+  {
+    "objectID": "biohack-modulo6.html#principales-fuentes-de-variación",
+    "href": "biohack-modulo6.html#principales-fuentes-de-variación",
+    "title": "biohack-modulo6",
+    "section": "Principales fuentes de variación",
+    "text": "Principales fuentes de variación\n\n\nVariación dentro de los tratamientos: dada por la diferencia entre las repeticiones dentro de un tratamiento con respecto a su media aritmética.\nVariación entre los tratamientos: dada por la aplicación del tratamiento.\nError experimental: dada por factores de poco o completamente ajenos al control del investigador.\nCómo veremos más adelante, dependiendo del diseño experimental, otras fuentes de variación serán tomadas en cuenta."
+  },
+  {
+    "objectID": "biohack-modulo6.html#tipos-de-diseño-experimental",
+    "href": "biohack-modulo6.html#tipos-de-diseño-experimental",
+    "title": "biohack-modulo6",
+    "section": "Tipos de diseño experimental",
+    "text": "Tipos de diseño experimental\n\n\nTradicionales\n\nSe basan fundamentalmente en el principio de la ortogonalidad (las variables independientes que explican a una variable no deben estar correlacionadas)\nPara cumplir la ortogonalidad, es común a veces requerir de muchas observaciones.\nPor tanto, son fáciles de planear, pero pueden resultar no viables en la práctica\n\nÓptimos\n\nEn lugar de la ortogonalidad, utilizan criterios de optimización para reducir el efecto de correlaciones.\nSon mucho más difícil de planear, pero generalmente son más fáciles de implementar."
+  },
+  {
+    "objectID": "biohack-modulo6.html#repeticiones-técnicas-y-biológicas",
+    "href": "biohack-modulo6.html#repeticiones-técnicas-y-biológicas",
+    "title": "biohack-modulo6",
+    "section": "Repeticiones técnicas y biológicas",
+    "text": "Repeticiones técnicas y biológicas\n\n\n\n\nTécnicas: El enfoque es hacer inferencias sobre un inviduo o probando un método, esto por cuanto es natural que las medidas al venir de una misma unidad experimental estén correlacionadas. Se necesitan modelos lineales mixtos y modelos lineales generalizados mixtos para su análisis.\n\nBiológicas: para hacer inferencias acerca de una población en general. El principio de independencia se mantiene y por tanto requieren metodología estándar (modelos lineales y modelos lineales generalizados).\n\n\nImagen tomada de aquí"
+  },
+  {
+    "objectID": "biohack-modulo6.html#pseudo-repeticiones",
+    "href": "biohack-modulo6.html#pseudo-repeticiones",
+    "title": "biohack-modulo6",
+    "section": "Pseudo repeticiones",
+    "text": "Pseudo repeticiones\n\n\nSon comunes en agricultura y ecología. Hay que evitarlas en la medida de lo posible por problemas de randomización. Requieren también modelos mixtos para su análisis.\n\nImagen tomada de aquí"
+  },
+  {
+    "objectID": "biohack-modulo6.html#revisitando-el-tamaño-de-muestra-análisis-de-poder",
+    "href": "biohack-modulo6.html#revisitando-el-tamaño-de-muestra-análisis-de-poder",
+    "title": "biohack-modulo6",
+    "section": "Revisitando el tamaño de muestra (análisis de poder)",
+    "text": "Revisitando el tamaño de muestra (análisis de poder)\n\n\nLa estimación del tamaño de muestra no es siempre una tarea sencilla.\nDepende del tipo de variable dependiente y el modelo estadístico a usarse.\nAdemás, requiere de información previa que muchas veces no es fácil de estimar:\n\nTamaños del efecto (cuya fórmula cambia dependiendo del modelo estadístico)\nY otros dependiendo del modelo estadístico tales como: desviación estándar agrupada, tamaño de efecto de Cohen y correlación.\n\nPara tener una idea de estos parámetros, uno puede valerse de estudios piloto o buscar valores en la literatura.\nPara ilustrar solo un caso, vamos a tomar en cuenta el caso del ANOVA (de una vía, balanceado)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#tamaño-de-muestra-para-el-anova-de-una-vía",
+    "href": "biohack-modulo6.html#tamaño-de-muestra-para-el-anova-de-una-vía",
+    "title": "biohack-modulo6",
+    "section": "Tamaño de muestra para el ANOVA de una vía",
+    "text": "Tamaño de muestra para el ANOVA de una vía\nEn R tenemos dos opciones para calcularlo con los comandos power.anova.test y pwr.anova.test:\n\n\nLibrería base {stats}\n\npower.anova.test(groups = NULL, n = NULL,\n                 between.var = NULL, within.var = NULL,\n                 sig.level = 0.05, power = NULL)\n\n\nLibrería {pwr}\n\npwr.anova.test(k = NULL, n = NULL, \n               f = NULL, sig.level = 0.05, \n               power = NULL)\n\n\n\nAmbas son básicamente lo mismo. En {pwr}, el argumento f se refiere al tamaño de efecto. El tamaño de efecto de un ANOVA de una vía balanceado está dado por la fórmula:\n\\[\nf = \\sqrt{\\frac{\\sigma^2_{\\text{entre tratamientos}}}{\\sigma^2_{\\text{dentro de los tratamientos}}}}\n\\]\n\n\nEstos valores son las sumas de cuadrados disponibles en la tabla del ANOVA"
+  },
+  {
+    "objectID": "biohack-modulo6.html#tamaño-de-muestra-para-el-anova-de-una-vía-1",
+    "href": "biohack-modulo6.html#tamaño-de-muestra-para-el-anova-de-una-vía-1",
+    "title": "biohack-modulo6",
+    "section": "Tamaño de muestra para el ANOVA de una vía",
+    "text": "Tamaño de muestra para el ANOVA de una vía\nRecordando el ejemplo de ANOVA del módulo anterior, supongamos que estamos interesados en llevar a cabo un experimento similar, y basándonos en ese estudio, queremos determinar nuestro tamaño de muestra. La tabla del paper se vería más o menos así:\n\n\n\nParameterSum_SquaresdfMean_SquareFpEta2Eta2 95% CITreatment11939.2842984.8213.61&lt; .0010.31[0.19, 1.00]Residuals26313.52120219.28      \n\n\n\n\n\n\n\nlibrary(pwr)\nlibrary(ggplot2)\nn &lt;- seq(2, 20, 1)\ncurva_poder &lt;- pwr.anova.test(k = 5, n = n,\n                              f = sqrt(11939.28/26313.52), \n                              sig.level = 0.05)\ncurva_poder_df &lt;- data.frame(n, \n                             poder = curva_poder$power)\ncurva_poder_df |&gt;\n  ggplot(aes(x = n, y = poder)) +\n  geom_point() +\n  geom_line() +\n  geom_hline(yintercept = 0.8, color = \"red\", linetype = \"dashed\") +\n  theme_bw() +\n  scale_y_continuous(labels = scales::percent)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#inconvenientes-con-el-tamaño-de-muestra",
+    "href": "biohack-modulo6.html#inconvenientes-con-el-tamaño-de-muestra",
+    "title": "biohack-modulo6",
+    "section": "Inconvenientes con el tamaño de muestra",
+    "text": "Inconvenientes con el tamaño de muestra\n\n\nEl ejemplo de tamaño de muestra que vimos corresponde a un caso de “fórmula cerrada”.\nUna fórmula cerrada es el nombre que se le da a una solución analítica.\nLa mayoría de modelos estadísticos clásicos tienen soluciones analíticas.\nCon modelos más complejos (mixtos y también óptimos), sus tamaños de muestra pueden ser aproximados con fórmulas cerradas de modelos clásicos.\nSin embargo para estos últimos (sobre todo en el ámbito académico), es preferible utilizar estimación de muestra por medio de simulaciones.\nLlevar a cabo simulaciones es complejo e implica un muy buen entendimiento de la matemática detrás de cada modelo.\nEntonces, ¿qué podemos hacer?"
+  },
+  {
+    "objectID": "biohack-modulo6.html#cuando-el-modelo-no-es-tan-complejo-simr",
+    "href": "biohack-modulo6.html#cuando-el-modelo-no-es-tan-complejo-simr",
+    "title": "biohack-modulo6",
+    "section": "Cuando el modelo no es tan complejo: {simr}",
+    "text": "Cuando el modelo no es tan complejo: {simr}\n\n\n{simr} es una librería de R que ofrece funciones para el análisis de poder de modelos líneales generalizados mixtos llevando a cabo las simulaciones por nosotros de una manera automatizada.\n{simr} basa su funcionamiento en la librería {lme4} y por lo tanto padece de las limitaciones de esta última (por ejemplo: datos expresados en forma de proporciones o porcentajes no son posibles de modelar con {lme4}).\n{simr} en si misma también posee varias limitaciones, entre ellas: sintaxis confusa (sobre todo para usuarios principiantes), tender a ser sumamente lento a medida que la complejidad del modelo aumenta, incapacidad de ser paralelizado fácilmente."
+  },
+  {
+    "objectID": "biohack-modulo6.html#cuando-las-fórmulas-cerradas-y-simr-nos-han-fallado",
+    "href": "biohack-modulo6.html#cuando-las-fórmulas-cerradas-y-simr-nos-han-fallado",
+    "title": "biohack-modulo6",
+    "section": "Cuando las fórmulas cerradas y {simr} nos han fallado",
+    "text": "Cuando las fórmulas cerradas y {simr} nos han fallado\n\n\nSi el objetivo de nuestra investigación no es llegarla a publicar en un journal de altísimo impacto, y nuestro modelo estadístico es complejo, podemos conformarnos con dos “números mágicos” que seguro has escuchado en algún momento:\n3 repeticiones por tratamiento: Para todo estadístico se necesitan al menos dos observaciones para poder calcularlo. 3 es una sugerencia ampliamente usada como el número mínimo de repeticiones.\n30 como tamaño total de la muestra: Cuando no se tiene manera de estimar los parámetros en un análisis de poder, se suele sugerir empezar la investigación con un número mínimo de 30 observaciones como muestra total."
+  },
+  {
+    "objectID": "biohack-modulo6.html#una-historia-sobre-bacterias",
+    "href": "biohack-modulo6.html#una-historia-sobre-bacterias",
+    "title": "biohack-modulo6",
+    "section": "Una historia sobre bacterias",
+    "text": "Una historia sobre bacterias\n\n\n\nSupongamos que tenemos 4 cepas de bacterias que en pruebas de laboratorio han demostrado tener buenas capacidades de degradar nitratos en agua.\nPara una posible producción a escala industrial, es necesario el determinar cuál de estas 4 cepas tiene la mejor eficiencia.\nEs necesario entonces el diseñar un experimento para responder a esta pregunta, teniendo en cuenta las condiciones que estas cepas, llamémoslas A, B, C y D requieren:\n\nFrascos de un litro de capacidad por cada unidad experimental.\nRepeticiones biólogicas (al menos 3)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#librería-fieldhub",
+    "href": "biohack-modulo6.html#librería-fieldhub",
+    "title": "biohack-modulo6",
+    "section": "Librería {FielDHub}",
+    "text": "Librería {FielDHub}\n\n\n\n\n{FielDHub} es una librería de R para que ayuda en la creación de diseños experimentales con enfoque hacia agricultura, reproducción de plantas, silvicultura, ciencias animales y biológicas.\nCuenta con capacidad de crear una diversidad de diseños tales como: DCA, DBCA, DFC, DBCA aumentado, diseño de bloques incompletos, diseño cuadrado latino …\nPara mayor información, puedes visitar la página oficial de la librería o la página en CRAN"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-completamente-al-azar-dca",
+    "href": "biohack-modulo6.html#diseño-completamente-al-azar-dca",
+    "title": "biohack-modulo6",
+    "section": "Diseño completamente al azar (DCA)",
+    "text": "Diseño completamente al azar (DCA)\n\n\nEs el diseño experimental más simple.\nConsidera las dos fuentes principales de variación (dentro y entre tratamientos).\nComúnmente usado en estudios de sondeo (screening). En el caso de nuestras bacterias, un screening serviría para determinar parámetros para un análisis de poder, o confirmar las pruebas en laboratorio.\n\n\n\n\nlibrary(FielDHub)                    \ndca.bacterias &lt;- CRD(t = 4,                  # número de tratamientos    \n                     reps = 3,               # número de repeticiones por tratamiento\n                     plotNumber = 101,       # número que asignamos al primer tratamiento\n                     locationName = \"Quito\", # nombre del lugar donde se lleva a cabo el experimento\n                     seed = 123)             # número que hace reproducible el diseño"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-completamente-al-azar-dca-1",
+    "href": "biohack-modulo6.html#diseño-completamente-al-azar-dca-1",
+    "title": "biohack-modulo6",
+    "section": "Diseño completamente al azar (DCA)",
+    "text": "Diseño completamente al azar (DCA)\n\n\nDemos un vistazo al objeto dca.bacterias\n\n\n\ndca.bacterias\n\nCompletely Randomized Design (CRD) \n\nInformation on the design parameters: \nList of 5\n $ numberofTreatments: num 4\n $ treatments        : chr [1:4] \"T1\" \"T2\" \"T3\" \"T4\"\n $ Reps              : num 3\n $ locationName      : chr \"Quito\"\n $ seed              : num 123\n\n 10 First observations of the data frame with the CRD field book: \n   ID LOCATION PLOT REP TREATMENT\n1   1    Quito  101   2        T4\n2   2    Quito  102   1        T2\n3   3    Quito  103   1        T1\n4   4    Quito  104   2        T3\n5   5    Quito  105   1        T3\n6   6    Quito  106   2        T2\n7   7    Quito  107   3        T4\n8   8    Quito  108   1        T4\n9   9    Quito  109   3        T3\n10 10    Quito  110   3        T1"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-completamente-al-azar-dca-2",
+    "href": "biohack-modulo6.html#diseño-completamente-al-azar-dca-2",
+    "title": "biohack-modulo6",
+    "section": "Diseño completamente al azar (DCA)",
+    "text": "Diseño completamente al azar (DCA)\n\n\nDemos un vistazo al objeto dca.bacterias\nAhora podemos tener una visualización del diseño\n\n\n\nplot(dca.bacterias)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-completamente-al-azar-dca-3",
+    "href": "biohack-modulo6.html#diseño-completamente-al-azar-dca-3",
+    "title": "biohack-modulo6",
+    "section": "Diseño completamente al azar (DCA)",
+    "text": "Diseño completamente al azar (DCA)\n\n\nDemos un vistazo al objeto dca.bacterias\nAhora podemos tener una visualización del diseño\n{FielDHub} nos proporciona la ubicación de nuestros tratamientos basada en una randomización automática y reproducible\n\n\n\nplot(dca.bacterias)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-completamente-al-azar-dca-4",
+    "href": "biohack-modulo6.html#diseño-completamente-al-azar-dca-4",
+    "title": "biohack-modulo6",
+    "section": "Diseño completamente al azar (DCA)",
+    "text": "Diseño completamente al azar (DCA)\n\n\n\ndca.bacterias$fieldBook\n\n   ID LOCATION PLOT REP TREATMENT\n1   1    Quito  101   2        T4\n2   2    Quito  102   1        T2\n3   3    Quito  103   1        T1\n4   4    Quito  104   2        T3\n5   5    Quito  105   1        T3\n6   6    Quito  106   2        T2\n7   7    Quito  107   3        T4\n8   8    Quito  108   1        T4\n9   9    Quito  109   3        T3\n10 10    Quito  110   3        T1\n11 11    Quito  111   3        T2\n12 12    Quito  112   2        T1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLa disposición espacial de nuestros tratamientos está dispuesta en formato “serpentín”"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-completamente-al-azar-dca-5",
+    "href": "biohack-modulo6.html#diseño-completamente-al-azar-dca-5",
+    "title": "biohack-modulo6",
+    "section": "Diseño completamente al azar (DCA)",
+    "text": "Diseño completamente al azar (DCA)\n\nUnos toques finales\n\n\n\ntrt &lt;- c(\"Cepa_A\",\n         \"Cepa_B\",\n         \"Cepa_C\",\n         \"Cepa_D\")\n\ntrt_lista &lt;- data.frame(TREATMENT = trt, REP = 3)\n\ndca.bacterias_2 &lt;- CRD(t = NULL,\n                       reps = NULL,\n                       plotNumber = 101,\n                       seed = 123,\n                       locationName = \"Quito\",\n                       data = trt_lista)\n\n\n\nplot(dca.bacterias_2)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-completamente-al-azar-dca-6",
+    "href": "biohack-modulo6.html#diseño-completamente-al-azar-dca-6",
+    "title": "biohack-modulo6",
+    "section": "Diseño completamente al azar (DCA)",
+    "text": "Diseño completamente al azar (DCA)\nUnos toques finales\n\n\n\ndca.bacterias_2$fieldBook\n\n   ID LOCATION PLOT REP TREATMENT\n1   1    Quito  101   2    Cepa_D\n2   2    Quito  102   1    Cepa_B\n3   3    Quito  103   1    Cepa_A\n4   4    Quito  104   2    Cepa_C\n5   5    Quito  105   1    Cepa_C\n6   6    Quito  106   2    Cepa_B\n7   7    Quito  107   3    Cepa_D\n8   8    Quito  108   1    Cepa_D\n9   9    Quito  109   3    Cepa_C\n10 10    Quito  110   3    Cepa_A\n11 11    Quito  111   3    Cepa_B\n12 12    Quito  112   2    Cepa_A\n\n\n\n\nplot(dca.bacterias_2)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#ventajas-y-desventajas-del-dca",
+    "href": "biohack-modulo6.html#ventajas-y-desventajas-del-dca",
+    "title": "biohack-modulo6",
+    "section": "Ventajas y desventajas del DCA",
+    "text": "Ventajas y desventajas del DCA\n\n\nVentajas:\n\nSu implementación y análisis son los más sencillos de todos los diseños experimentales\nEs flexible (permite cualquier número de tratamientos, repeticiones)\n\nDesventajas:\n\nSu implementación está limitada a ambientes muy bien controlados y unidades experimentales dentro de cada tratamiento bastante homogéneas. Por ello, es muy dificil su implementación en ambientes abiertos (por ejemplo, experimentos al aire libre).\nAl no controlar otras fuentes de variación, es menos preciso que otros diseños."
+  },
+  {
+    "objectID": "biohack-modulo6.html#ecuación-del-dca",
+    "href": "biohack-modulo6.html#ecuación-del-dca",
+    "title": "biohack-modulo6",
+    "section": "Ecuación del DCA",
+    "text": "Ecuación del DCA\n\nMatemáticamente un DCA se puede representar con la siguiente fórmula:\n\n\\[\nY_{i,j} = \\beta_0 + \\beta_i\\,\\text{Factor}_i + \\epsilon\n\\]\nDonde:\n\\(Y_{i,j}\\): es la observación del factor \\(i\\) de la repetición \\(j\\)\n\\(\\beta_0\\): es el parámetro de locación del modelo\n\\(\\beta_i\\): es el coeficiente del factor \\(i\\)\n\\(\\epsilon\\): es el error aleatorio del modelo"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-en-bloques-completamente-al-azar-dbca",
+    "href": "biohack-modulo6.html#diseño-en-bloques-completamente-al-azar-dbca",
+    "title": "biohack-modulo6",
+    "section": "Diseño en bloques completamente al azar (DBCA)",
+    "text": "Diseño en bloques completamente al azar (DBCA)\n\n\nUn DBCA introduce el modelado de una tercera fuente de variación: el bloque\nEl bloque es una adición que ayuda a controlar mejor los errores aleatorios al disponer los tratamientos randomizados en tantas unidades físicas como repeticiones se desee.\nEl bloque en el contexto del experimentador, podría referirse en nuestro ejemplo, a las estanterías que utilizaríamos para colocar nuestras botellas con medio de cultivo. Es de esperarse que al encontrarse las estanterías expuestas a pequeñas diferencias (luz, humedad, temperatura) entre una y otra, sus errores aleatorios sean distintos.\nEl efecto del bloque busca regularizar dichas diferencias."
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-en-bloques-completamente-al-azar-dbca-1",
+    "href": "biohack-modulo6.html#diseño-en-bloques-completamente-al-azar-dbca-1",
+    "title": "biohack-modulo6",
+    "section": "Diseño en bloques completamente al azar (DBCA)",
+    "text": "Diseño en bloques completamente al azar (DBCA)\n\ndbca.bacterias &lt;- RCBD(t = NULL,\n                       reps = 3,                    \n                       l = 1,                  # número de locaciones\n                       plotNumber = 101,       \n                       locationNames = \"Quito\", \n                       seed = 123,\n                       data = trt_lista)       \n\n\n\n\ndbca.bacterias$fieldBook\n\n   ID LOCATION PLOT REP TREATMENT\n1   1    QUITO  101   1    Cepa_C\n2   2    QUITO  102   1    Cepa_D\n3   3    QUITO  103   1    Cepa_A\n4   4    QUITO  104   1    Cepa_B\n8   5    QUITO  201   2    Cepa_A\n7   6    QUITO  202   2    Cepa_D\n6   7    QUITO  203   2    Cepa_B\n5   8    QUITO  204   2    Cepa_C\n9   9    QUITO  301   3    Cepa_C\n10 10    QUITO  302   3    Cepa_A\n11 11    QUITO  303   3    Cepa_B\n12 12    QUITO  304   3    Cepa_D\n\n\n\n\nplot(dbca.bacterias)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#ventajas-y-desventajas-del-dbca",
+    "href": "biohack-modulo6.html#ventajas-y-desventajas-del-dbca",
+    "title": "biohack-modulo6",
+    "section": "Ventajas y desventajas del DBCA",
+    "text": "Ventajas y desventajas del DBCA\n\n\nVentajas:\n\nTiene mayor precisión que el DCA al controlar una fuente extra de variación.\nEs mejor que el DCA en experimentos al aire libre.\n\nDesventajas:\n\nCuando el número de tratamientos se incrementa, el número de bloques también. Esto hace que mantener la homogeneidad de los bloques resulte más difícil de controlar."
+  },
+  {
+    "objectID": "biohack-modulo6.html#ecuación-del-dbca",
+    "href": "biohack-modulo6.html#ecuación-del-dbca",
+    "title": "biohack-modulo6",
+    "section": "Ecuación del DBCA",
+    "text": "Ecuación del DBCA\n\\[\nY_{i,j,k} = \\beta_0 + \\beta_i\\,\\text{Factor}_i + \\beta_j\\,\\text{Bloque}_j+ \\epsilon\n\\]\nDonde:\n\\(Y_{i,j,k}\\): es la observación del factor \\(i\\) del bloque \\(j\\) de la repetición \\(k\\)\n\\(\\beta_i\\): es el coeficiente del factor \\(i\\)\n\\(\\beta_j\\): es el coeficiente del bloque \\(j\\)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-factorial-completo-dfc",
+    "href": "biohack-modulo6.html#diseño-factorial-completo-dfc",
+    "title": "biohack-modulo6",
+    "section": "Diseño factorial completo (DFC)",
+    "text": "Diseño factorial completo (DFC)\n\n\nAntes de continuar, no hemos definido exactamente qué entendemos por tratamiento.\nEn nuestro ejemplo, el tratamiento ha sido determinado por las distintas cepas a evaluar.\nSin embargo, es más común encontrarnos con preguntas de investigación que tienen mayor nivel de complejidad:\n\nDesde el punto de vista biológico, el saber si una determinada cepa puede degradar N a una única concentración no parece tan crucial. De manera lógica, sería de mayor interés el evaluar las cepas a distintas concentraciones de N."
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-factorial-completo-dfc-1",
+    "href": "biohack-modulo6.html#diseño-factorial-completo-dfc-1",
+    "title": "biohack-modulo6",
+    "section": "Diseño factorial completo (DFC)",
+    "text": "Diseño factorial completo (DFC)\n\n\nEs decir, hasta el momento, nuestros tratamientos están definidos por dos factores:\n\nLas 4 cepas bacterianas\nUna única concentración de N\n\n¿Qué tienen en común estos dos factores? ¡ambos son controlados por el investigador!\nEn resumen, un tratamiento se define cómo el uso de un solo factor o la combinación de dos o más factores a evaluar en un conjunto (muestra) de unidades experimentales y sobre los cuales el investigador tiene control.\nUn factor está conformado por \\(n\\) niveles, en nuestro ejemplo hasta el momento tenemos lo siguiente:\n\nFactor 1: Cepa\n\nNiveles: 4 (“A”, “B”, “C” y “D”)\n\nFactor 2: Concentración de N\n\nNiveles: 1 (una misma concentración de N para todos los niveles del factor 1)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-factorial-completo-dfc-2",
+    "href": "biohack-modulo6.html#diseño-factorial-completo-dfc-2",
+    "title": "biohack-modulo6",
+    "section": "Diseño factorial completo (DFC)",
+    "text": "Diseño factorial completo (DFC)\n\n\nRegresando al hecho de que evaluar las cepas a distintas concentraciones de N sería mas interesante, el DFC nos ofrece precisamente esa posibilidad.\nEl DFC es una extensión del DCA y el DBCA que nos permite evaluar tratamientos donde los factores que los conforman tienen 2 o más niveles cada uno.\nAsí, digamos que queremos evaluar 3 distintas concentraciones de N. Entonces, nuestros tratamientos estarán determinados por los factores cepa y N de la siguiente manera:\n\nFactor 1: Cepa\n\nNiveles: 4 (“A”, “B”, “C”, “D”)\n\nFactor 2: Concentración de N\n\nNiveles: 3 (“N1”, “N2”, “N3”)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-factorial-completo-dfc-3",
+    "href": "biohack-modulo6.html#diseño-factorial-completo-dfc-3",
+    "title": "biohack-modulo6",
+    "section": "Diseño factorial completo (DFC)",
+    "text": "Diseño factorial completo (DFC)\nDCA factorial completo\n\nFACTORS &lt;- rep(c(\"CEPA\", \"N\"), c(4,3))\nLEVELS &lt;- c(\"A\", \"B\", \"C\", \"D\", \"N1\", \"N2\", \"N3\")\ndata_factorial &lt;- data.frame(FACTOR = FACTORS, LEVEL = LEVELS)\n\ndfc.dca.bacterias &lt;- full_factorial(setfactors = NULL,\n                                    reps = 3,\n                                    l = 1,\n                                    type = 1,\n                                    plotNumber = 101,\n                                    seed = 123,\n                                    locationNames = \"Quito\",\n                                    data = data_factorial)\n\n\n\n\nhead(dfc.dca.bacterias$fieldBook, 14)\n\n   ID LOCATION PLOT REP FACTOR_CEPA FACTOR_N TRT_COMB\n1   1    Quito  101   3           A       N3     A*N3\n2   2    Quito  102   2           B       N1     B*N1\n3   3    Quito  103   3           D       N3     D*N3\n4   4    Quito  104   1           B       N3     B*N3\n5   5    Quito  105   1           B       N3     B*N3\n6   6    Quito  106   1           A       N1     A*N1\n7   7    Quito  107   2           C       N3     C*N3\n8   8    Quito  108   1           A       N1     A*N1\n9   9    Quito  109   2           D       N2     D*N2\n10 10    Quito  110   3           B       N2     B*N2\n11 11    Quito  111   3           B       N2     B*N2\n12 12    Quito  112   1           A       N1     A*N1\n13 13    Quito  113   2           D       N2     D*N2\n14 14    Quito  114   1           D       N1     D*N1\n\n\n\n\nplot(dfc.dca.bacterias)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-factorial-completo-dfc-4",
+    "href": "biohack-modulo6.html#diseño-factorial-completo-dfc-4",
+    "title": "biohack-modulo6",
+    "section": "Diseño factorial completo (DFC)",
+    "text": "Diseño factorial completo (DFC)\nDBCA factorial completo\n\ndfc.dbca.bacterias &lt;- full_factorial(setfactors = NULL,\n                                     reps = 3,\n                                     l = 1,\n                                     type = 2,\n                                     plotNumber = 101,\n                                     seed = 123,\n                                     locationNames = \"Quito\",\n                                     data = data_factorial)\n\n\n\n\nhead(dfc.dbca.bacterias$fieldBook, 14)\n\n   ID LOCATION PLOT REP FACTOR_CEPA FACTOR_N TRT_COMB\n1   1    Quito  101   1           D       N2     D*N2\n2   2    Quito  102   1           B       N1     B*N1\n3   3    Quito  103   1           A       N2     A*N2\n4   4    Quito  104   1           B       N3     B*N3\n5   5    Quito  105   1           A       N3     A*N3\n6   6    Quito  106   1           C       N3     C*N3\n7   7    Quito  107   1           D       N3     D*N3\n8   8    Quito  108   1           A       N1     A*N1\n9   9    Quito  109   1           B       N2     B*N2\n10 10    Quito  110   1           C       N1     C*N1\n11 11    Quito  111   1           D       N1     D*N1\n12 12    Quito  112   1           C       N2     C*N2\n24 13    Quito  201   2           A       N3     A*N3\n23 14    Quito  202   2           B       N2     B*N2\n\n\n\n\nplot(dfc.dbca.bacterias)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#ventajas-y-desventajas-del-dcf",
+    "href": "biohack-modulo6.html#ventajas-y-desventajas-del-dcf",
+    "title": "biohack-modulo6",
+    "section": "Ventajas y desventajas del DCF",
+    "text": "Ventajas y desventajas del DCF\n\n\nVentajas:\n\nEn este tipo de diseños podemos introducir interacciones entre factores.\nPuede ayudar a responder varias preguntas a la vez gracias a las múltiples combinaciones entre sus factores.\n\nDesventajas:\n\nPuede resultar en enormes números de unidades experimentales a medida que los niveles de los factores incrementan.\nLa complejidad de la interpretación de sus resultados aumenta también al introducir más factores, sobre todo de las interacciones entre estos, que muchas veces resultan en conclusiones carentes de sentido."
+  },
+  {
+    "objectID": "biohack-modulo6.html#ecuación-del-dcf-de-dos-factores",
+    "href": "biohack-modulo6.html#ecuación-del-dcf-de-dos-factores",
+    "title": "biohack-modulo6",
+    "section": "Ecuación del DCF (de dos factores)",
+    "text": "Ecuación del DCF (de dos factores)\n\\[\nY_{i,j,k} = \\beta_0 + \\beta_i\\text{Factor}_i + \\beta_j\\,\\text{Factor}_j + \\beta_{ij}\\,\\text{Factor}_i\\times\\text{Factor}_j+\\epsilon\n\\] Donde:\n\\(Y_{i,j,k}\\): es la observación del factor \\(i\\) del bloque \\(j\\) de la repetición \\(k\\)\n\\(\\beta_i\\): es el coeficiente del factor \\(i\\)\n\\(\\beta_j\\): es el coeficiente del factor \\(j\\)\n\\(\\beta_ij\\): es el coefficiente de la interacción de los factores \\(i\\) y \\(j\\)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-cuadrado-latino-dcl",
+    "href": "biohack-modulo6.html#diseño-cuadrado-latino-dcl",
+    "title": "biohack-modulo6",
+    "section": "Diseño Cuadrado Latino (DCL)",
+    "text": "Diseño Cuadrado Latino (DCL)\n\n\nA diferencia del DBCA, el DCL incluye dos factores de bloque en lugar de uno. Además, estos factores de bloque corresponden a variables de interés del investigador (ya no, como en el ejemplo anterior, que los bloques podían corresponder a locaciones físicas por ejemplo)\nLa ventaja de este tipo de diseños es que fraccionan (reducen) el número de unidades experimentales que serían necesarias con otros diseños.\nComo condición presenta que los factores tienen que tener igual número de níveles.\nEn el ejemplo de las bacterias, supongamos que retiramos una cepa y agregamos el fósforo como factor de interés:\n\nFactor 1: Cepa (tratamiento principal)\n\nNiveles: 3 (“A”, “B”, “C”)\n\nFactor 2: Concentración de N (factor de bloque)\n\nNiveles: 3 (“N1”, “N2”, “N3”)\n\nFactor 3: Concentración de P (factor de bloque)\n\nNiveles: 3 (“P1”, “P2”, “P3”)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-cuadrado-latino-dcl-1",
+    "href": "biohack-modulo6.html#diseño-cuadrado-latino-dcl-1",
+    "title": "biohack-modulo6",
+    "section": "Diseño Cuadrado Latino (DCL)",
+    "text": "Diseño Cuadrado Latino (DCL)\n\n\nBajo un DBCA factorial con 3 repeticiones, necesitaríamos 81 unidades experimentales, mientras que bajo un DCL, necesitaríamos 27.\nPodemos generalizar el número total de observaciones para un DCL si aplicamos la siguiente fórmula: siendo \\(K\\) el número de niveles todos los factores, el número total de unidades experimentales que necesitamos es igual a:\n\n\n\n\\[\\begin{align}\n\\text{UE} &=\\text{número de repeticiones} \\times K^2\n\\end{align}\\]\n\nEsta reducción en el número de unidades experimentales es conseguido gracias a ordenar al azar las unidades experimentales en un cuadrado (de ahí su nombre) donde el número de filas y columnas es igual a \\(K\\) niveles se consideren.\nEsta optimización de recursos tienen un costo, en un DCL no es posible estimar coeficientes para interacciones."
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-cuadrado-latino-dcl-2",
+    "href": "biohack-modulo6.html#diseño-cuadrado-latino-dcl-2",
+    "title": "biohack-modulo6",
+    "section": "Diseño Cuadrado Latino (DCL)",
+    "text": "Diseño Cuadrado Latino (DCL)\n\nlatin_data &lt;- data.frame(list(ROW = paste(\"P\", 1:3, sep = \"\"),\n                              COLUMN = paste(\"N\", 1:3, sep = \"\"),\n                              TREATMENT = paste(\"Cepa\", 1:3, sep =\"\")))\n\ndcl.bacterias &lt;- latin_square(t = NULL,\n                              reps = 3,\n                              plotNumber = 101,\n                              locationNames = \"Quito\",\n                              seed = 1985,\n                              data = latin_data)\n\n\n\n\nhead(dcl.bacterias$fieldBook, 14)\n\n   ID LOCATION PLOT SQUARE ROW COLUMN TREATMENT\n1   1    Quito  101      1  P1     N1     Cepa3\n2   2    Quito  102      1  P1     N2     Cepa1\n3   3    Quito  103      1  P1     N3     Cepa2\n4   4    Quito  106      1  P2     N1     Cepa2\n5   5    Quito  105      1  P2     N2     Cepa3\n6   6    Quito  104      1  P2     N3     Cepa1\n7   7    Quito  107      1  P3     N1     Cepa1\n8   8    Quito  108      1  P3     N2     Cepa2\n9   9    Quito  109      1  P3     N3     Cepa3\n10 10    Quito  201      2  P1     N1     Cepa2\n11 11    Quito  202      2  P1     N2     Cepa1\n12 12    Quito  203      2  P1     N3     Cepa3\n13 13    Quito  206      2  P2     N1     Cepa3\n14 14    Quito  205      2  P2     N2     Cepa2\n\n\n\n\nplot(dcl.bacterias)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#ventajas-y-desventajas-del-dcl",
+    "href": "biohack-modulo6.html#ventajas-y-desventajas-del-dcl",
+    "title": "biohack-modulo6",
+    "section": "Ventajas y desventajas del DCL",
+    "text": "Ventajas y desventajas del DCL\n\n\nVentajas:\n\nDCL es más eficiente que DBCA y DCA gracias al introducir un “bloque” extra. Esto implica el uso de un reducido número de unidades experimentales\n\nDesventajas:\n\nLa necesidad de contar con el mismo número de niveles en ambos factores puede ser considerada como una desventaja.\nBajo un DCL NO se pueden estudiar interacciones entre los factores. Esto debido a que la matriz del modelo no es ortogonal para poder estimar dichos efectos."
+  },
+  {
+    "objectID": "biohack-modulo6.html#ecuación-del-dcl",
+    "href": "biohack-modulo6.html#ecuación-del-dcl",
+    "title": "biohack-modulo6",
+    "section": "Ecuación del DCL",
+    "text": "Ecuación del DCL\n\\[\nY_{i,j,k,l} = \\beta_0 + \\beta_i\\text{Factor}_i + \\beta_j\\,\\text{Fila}_j + \\beta_{k}\\,\\text{Columna}_k+\\epsilon\n\\]\n\\(Y_{i,j,k,l}\\): es la observación del factor \\(i\\) de la fila \\(j\\) de la columna \\(k\\) de la repetición \\(l\\)\n\\(\\beta_i\\): es el coeficiente del factor \\(i\\)\n\\(\\beta_j\\): es el coeficiente de la fila \\(j\\)\n\\(\\beta_k\\): es el coeficiente de la columna \\(k\\)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#usando-el-fieldbook",
+    "href": "biohack-modulo6.html#usando-el-fieldbook",
+    "title": "biohack-modulo6",
+    "section": "Usando el fieldBook",
+    "text": "Usando el fieldBook\n\nLa tabla de datos fieldBook podemos exportarla a un archivo Excel con ayuda de la librería openxlsx\n\n\ninstall.packages(\"openxlsx\")\nopenxlsx::write.xlsx(dca.bacterias_2$fieldBook, file = \"dca_bacterias.xlsx\")"
+  },
+  {
+    "objectID": "biohack-modulo6.html#otros-diseños-experimentales",
+    "href": "biohack-modulo6.html#otros-diseños-experimentales",
+    "title": "biohack-modulo6",
+    "section": "Otros diseños experimentales",
+    "text": "Otros diseños experimentales\n{FielDHub} nos ofrece las funciones de planificar otros diseños tales como:\n\n\nDiseño split-plot: muy popular en agricultura. Se basa en modelar dos factores.\n\nParcela total: un factor difícil de aplicar (tipo de arado por ejemplo).\nSub parcela: factores fáciles de cambiar (tipo de fertilizante, semilla plantada).\n\nDBCA aumentado: es una variación del DBCA donde se reducen el número de repeticiones de ciertos tratamientos (el control por lo general). En un DBCA clásico, se aplicaría el control con tantas repeticiones tenga el resto de tratamientos por cada bloque. En el DBCA aumentado, el control se aplicaría una sola vez por bloque.\nAlfa lattice: otra variación del DBCA donde cada bloque es reorganizado en sub-bloques. Cada sub-bloque contiene un subset del total de los tratamientos (incompleto). Esto ayuda a reducir la variabilidad y aumentar la precisión sin tener todos los tratamientos en el mismo bloque."
+  },
+  {
     "objectID": "biohack-modulo6.html#section-1",
     "href": "biohack-modulo6.html#section-1",
     "title": "biohack-modulo6",
