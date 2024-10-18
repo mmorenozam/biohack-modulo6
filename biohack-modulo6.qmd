@@ -925,6 +925,108 @@ openxlsx::write.xlsx(dca.bacterias_2$fieldBook, file = "dca_bacterias.xlsx")
 
 :::
 
+## Implementación en R 
+
+::: incremental
+
+-   Todos los diseños experimentales son posibles de analizar mediante ANOVA
+
+-   Solo basta saber estructurar su fórmula
+
+-   Un DCA es equivalente al ANOVA de una vía
+
+-   Un DBCA de un solo factor es equivalente a un ANOVA aditivo de dos vías
+
+-   Un DFC es equivalente a un ANOVA no aditivo de 2 vías (más un efecto de bloque en caso de ser un DFC por bloques).
+
+-   Terminaremos por tanto con tan solo un ejemplo del diseño cuadrado latino
+
+:::
+
+## Diseño cuadrado latino en R {.smaller}
+
+En un estudio agronómico se desea conocer el efecto sobre la productividad en quintales de maíz al usar tres factores: fertilizante, estilo de labrado, y semilla.
+
+Tenemos 3 factores:
+
+-   Fertilizante (F1, F2, F3, F4, F5), 
+
+-   Labrado (labA, labB, labC, labD, labE) y
+
+-   Semilla (A, B, C, D, E)
+
+```{r echo=T, eval=T, error=T}
+fertil <- c(rep("F1",1), rep("F2",1), rep("F3",1), rep("F4",1), rep("F5",1))
+labra <- c(rep("labA",5), rep("labB",5), rep("labC",5), rep("labD",5), rep("labE",5))
+seed <- c("A","E","C","B","D", "C","B","A","D","E", "B","C","D","E","A", "D","A","E","C","B", "E","D","B","A","C")
+quintales <- c(42,45,41,56,47,
+               47,54,46,52,49,
+               55,52,57,49,45,
+               51,44,47,50,54,
+               44,50,48,43,46)
+ 
+misdatos <- data.frame(labra, fertil, seed, quintales)
+```
+
+## Diseño cuadrado latino en R {.smaller visibility="uncounted"}
+
+::: columns
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+library(ggplot2)
+misdatos |>
+  ggplot(aes(x = labra, 
+             y = quintales, 
+             group = labra)) + 
+  geom_boxplot() + 
+  geom_point(aes(color = seed), size = 3)
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+library(ggplot2)
+misdatos |>
+  ggplot(aes(x = fertil, 
+             y = quintales, 
+             group = fertil)) + 
+  geom_boxplot() + 
+  geom_point(aes(color = seed), size = 3)
+```
+:::
+:::
+
+
+## Diseño cuadrado latino en R {.smaller visibility="uncounted"}
+
+::: columns
+::: {.column .fragment width="50%"}
+```{r echo=T, eval=T, error=T}
+library(car)
+lm_latin <- lm(quintales ~ fertil + labra + seed, data = misdatos)
+Anova(lm_latin)
+```
+:::
+
+::: {.column .fragment width="50%"}
+-   Homogeneidad de las varianzas
+
+```{r echo=T, eval=T, error=T}
+leveneTest(quintales ~ fertil, data = misdatos) # hacemos lo mismo para cada factor
+```
+
+-   Normalidad de los residuos
+
+```{r echo=T, eval=T, error=T}
+residuos <- lm_latin$residuals
+shapiro.test(residuos)
+```
+
+
+:::
+:::
+
+
 ##
 
 ::: columns

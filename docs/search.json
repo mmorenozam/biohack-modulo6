@@ -294,6 +294,34 @@
     "text": "Otros diseños experimentales\n{FielDHub} nos ofrece las funciones de planificar otros diseños tales como:\n\n\nDiseño split-plot: muy popular en agricultura. Se basa en modelar dos factores.\n\nParcela total: un factor difícil de aplicar (tipo de arado por ejemplo).\nSub parcela: factores fáciles de cambiar (tipo de fertilizante, semilla plantada).\n\nDBCA aumentado: es una variación del DBCA donde se reducen el número de repeticiones de ciertos tratamientos (el control por lo general). En un DBCA clásico, se aplicaría el control con tantas repeticiones tenga el resto de tratamientos por cada bloque. En el DBCA aumentado, el control se aplicaría una sola vez por bloque.\nAlfa lattice: otra variación del DBCA donde cada bloque es reorganizado en sub-bloques. Cada sub-bloque contiene un subset del total de los tratamientos (incompleto). Esto ayuda a reducir la variabilidad y aumentar la precisión sin tener todos los tratamientos en el mismo bloque."
   },
   {
+    "objectID": "biohack-modulo6.html#implementación-en-r",
+    "href": "biohack-modulo6.html#implementación-en-r",
+    "title": "biohack-modulo6",
+    "section": "Implementación en R",
+    "text": "Implementación en R\n\n\nTodos los diseños experimentales son posibles de analizar mediante ANOVA\nSolo basta saber estructurar su fórmula\nUn DCA es equivalente al ANOVA de una vía\nUn DBCA de un solo factor es equivalente a un ANOVA aditivo de dos vías\nUn DFC es equivalente a un ANOVA no aditivo de 2 vías (más un efecto de bloque en caso de ser un DFC por bloques).\nTerminaremos por tanto con tan solo un ejemplo del diseño cuadrado latino"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-cuadrado-latino-en-r",
+    "href": "biohack-modulo6.html#diseño-cuadrado-latino-en-r",
+    "title": "biohack-modulo6",
+    "section": "Diseño cuadrado latino en R",
+    "text": "Diseño cuadrado latino en R\nEn un estudio agronómico se desea conocer el efecto sobre la productividad en quintales de maíz al usar tres factores: fertilizante, estilo de labrado, y semilla.\nTenemos 3 factores:\n\nFertilizante (F1, F2, F3, F4, F5),\nLabrado (labA, labB, labC, labD, labE) y\nSemilla (A, B, C, D, E)\n\n\nfertil &lt;- c(rep(\"F1\",1), rep(\"F2\",1), rep(\"F3\",1), rep(\"F4\",1), rep(\"F5\",1))\nlabra &lt;- c(rep(\"labA\",5), rep(\"labB\",5), rep(\"labC\",5), rep(\"labD\",5), rep(\"labE\",5))\nseed &lt;- c(\"A\",\"E\",\"C\",\"B\",\"D\", \"C\",\"B\",\"A\",\"D\",\"E\", \"B\",\"C\",\"D\",\"E\",\"A\", \"D\",\"A\",\"E\",\"C\",\"B\", \"E\",\"D\",\"B\",\"A\",\"C\")\nquintales &lt;- c(42,45,41,56,47,\n               47,54,46,52,49,\n               55,52,57,49,45,\n               51,44,47,50,54,\n               44,50,48,43,46)\n \nmisdatos &lt;- data.frame(labra, fertil, seed, quintales)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-cuadrado-latino-en-r-1",
+    "href": "biohack-modulo6.html#diseño-cuadrado-latino-en-r-1",
+    "title": "biohack-modulo6",
+    "section": "Diseño cuadrado latino en R",
+    "text": "Diseño cuadrado latino en R\n\n\n\nlibrary(ggplot2)\nmisdatos |&gt;\n  ggplot(aes(x = labra, \n             y = quintales, \n             group = labra)) + \n  geom_boxplot() + \n  geom_point(aes(color = seed), size = 3)\n\n\n\n\n\n\n\n\n\n\nlibrary(ggplot2)\nmisdatos |&gt;\n  ggplot(aes(x = fertil, \n             y = quintales, \n             group = fertil)) + \n  geom_boxplot() + \n  geom_point(aes(color = seed), size = 3)"
+  },
+  {
+    "objectID": "biohack-modulo6.html#diseño-cuadrado-latino-en-r-2",
+    "href": "biohack-modulo6.html#diseño-cuadrado-latino-en-r-2",
+    "title": "biohack-modulo6",
+    "section": "Diseño cuadrado latino en R",
+    "text": "Diseño cuadrado latino en R\n\n\n\nlibrary(car)\nlm_latin &lt;- lm(quintales ~ fertil + labra + seed, data = misdatos)\nAnova(lm_latin)\n\nAnova Table (Type II tests)\n\nResponse: quintales\n          Sum Sq Df F value   Pr(&gt;F)    \nfertil     17.76  4  0.7967 0.549839    \nlabra     109.36  4  4.9055 0.014105 *  \nseed      286.16  4 12.8361 0.000271 ***\nResiduals  66.88 12                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\nHomogeneidad de las varianzas\n\n\nleveneTest(quintales ~ fertil, data = misdatos) # hacemos lo mismo para cada factor\n\nLevene's Test for Homogeneity of Variance (center = median)\n      Df F value Pr(&gt;F)\ngroup  4  0.1774 0.9474\n      20               \n\n\n\nNormalidad de los residuos\n\n\nresiduos &lt;- lm_latin$residuals\nshapiro.test(residuos)\n\n\n    Shapiro-Wilk normality test\n\ndata:  residuos\nW = 0.97691, p-value = 0.8178"
+  },
+  {
     "objectID": "biohack-modulo6.html#section-1",
     "href": "biohack-modulo6.html#section-1",
     "title": "biohack-modulo6",
